@@ -1,5 +1,6 @@
 package xyz.phanta.psicosts.integration;
 
+import io.github.phantamanta44.libnine.LibNine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
@@ -22,19 +23,28 @@ public class IntegrationManager {
     private final Collection<PsioIntegration> integrations = new ArrayList<>();
 
     public void loadIntegrations(ASMDataTable asmTable) {
-        for (ASMDataTable.ASMData asmData : asmTable.getAll(PsioIntegration.Register.class.getCanonicalName())) {
+        for (ASMDataTable.ASMData asmData : asmTable.getAll(PsioIntegration.Register.class.getName())) {
             String intModId = (String)asmData.getAnnotationInfo().get("value");
             if (Loader.isModLoaded(intModId)) {
                 Psio.LOGGER.info("Found integration target {}.", intModId);
                 try {
                     integrations.add((PsioIntegration)Class.forName(asmData.getClassName()).newInstance());
                 } catch (Exception e) {
-                    Psio.LOGGER.error("Integration init failed!", e);
+                    Psio.LOGGER.error("Integration loading failed!", e);
                 }
             } else {
                 Psio.LOGGER.info("Integration target {} not found; skipping integration.", intModId);
             }
         }
+        LibNine.PROXY.getRegistrar().begin(Psio.INSTANCE);
+        for (PsioIntegration integration : integrations) {
+            try {
+                integration.registerEntries();
+            } catch (Exception e) {
+                Psio.LOGGER.error("Integration registration failed for {}!", integration.getClass());
+            }
+        }
+        LibNine.PROXY.getRegistrar().end();
     }
 
     private final Collection<InventoryProvider> invProviders = new ArrayList<>();

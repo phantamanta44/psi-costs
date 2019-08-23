@@ -1,5 +1,7 @@
 package xyz.phanta.psicosts.item;
 
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import io.github.phantamanta44.libnine.capability.provider.CapabilityBroker;
 import io.github.phantamanta44.libnine.item.L9ItemSubs;
 import io.github.phantamanta44.libnine.util.helper.OptUtils;
@@ -9,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.common.Optional;
 import xyz.phanta.psicosts.PsioConfig;
 import xyz.phanta.psicosts.capability.PsiCell;
 import xyz.phanta.psicosts.constant.LangConst;
@@ -20,7 +23,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Objects;
 
-public class ItemPsiCell extends L9ItemSubs {
+@Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles", striprefs = true)
+public class ItemPsiCell extends L9ItemSubs implements IBauble {
 
     public ItemPsiCell() {
         super(LangConst.ITEM_PSI_CELL, Tier.VALUES.length);
@@ -52,6 +56,11 @@ public class ItemPsiCell extends L9ItemSubs {
     public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
         tooltip.add(TooltipUtils.formatPsiEnergy(stack));
         tooltip.add(TooltipUtils.formatInfo(LangConst.TT_CELL));
+    }
+
+    @Override
+    public BaubleType getBaubleType(ItemStack itemstack) {
+        return BaubleType.TRINKET;
     }
 
     public enum Tier {

@@ -1,0 +1,10 @@
+itemGroup.psicosts=Psio
+
+item.psicosts:psi_cell0.name=PSI Cell
+item.psicosts:psi_cell1.name=PSI-O Cell
+item.psicosts:psi_cell2.name=PSI-Dyne Cell
+item.psicosts:psi_cell3.name=PSI-Force Cell
+item.psicosts:psi_hypostim.name=PSI Stimulator
+
+psicosts.misc.tooltip.cell=Stores psionic energy.
+psicosts.misc.tooltip.hypostim=Single-use shot of psionic energy.

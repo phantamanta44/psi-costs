@@ -1,17 +1,13 @@
 package xyz.phanta.psicosts;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import xyz.phanta.psicosts.event.PsiRegenHandler;
 import xyz.phanta.psicosts.integration.IntegrationManager;
-import xyz.phanta.psicosts.integration.PsioIntegration;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
 
 public class CommonProxy {
 
@@ -20,6 +16,8 @@ public class CommonProxy {
     public void onPreInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new PsiRegenHandler());
         intManager.loadIntegrations(event.getAsmData());
+        Psio.INSTANCE.getNetworkHandler().registerMessage(
+                new SPacketSyncPsiEnergy.Handler(), SPacketSyncPsiEnergy.class, 0, Side.CLIENT);
     }
 
     public void onInit(FMLInitializationEvent event) {

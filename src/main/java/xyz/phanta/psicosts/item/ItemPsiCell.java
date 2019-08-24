@@ -125,7 +125,7 @@ public class ItemPsiCell extends L9ItemSubs implements ParameterizedItemModel.IP
         }
 
         @Override
-        public int injectCharge(int amount, EntityPlayer player) {
+        public int injectCharge(int amount) {
             int stored = getStoredCharge();
             int toTransfer = Math.min(amount, getMaxCharge() - stored);
             getTag().setInteger("PsioCharge", stored + toTransfer);

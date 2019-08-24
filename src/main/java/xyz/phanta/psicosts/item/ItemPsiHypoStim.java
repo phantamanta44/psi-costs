@@ -78,7 +78,7 @@ public class ItemPsiHypoStim extends L9Item {
         }
 
         @Override
-        public int injectCharge(int amount, EntityPlayer player) {
+        public int injectCharge(int amount) {
             return 0;
         }
 

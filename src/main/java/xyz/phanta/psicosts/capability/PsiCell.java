@@ -18,7 +18,7 @@ public interface PsiCell {
         return true;
     }
 
-    int injectCharge(int amount, EntityPlayer player);
+    int injectCharge(int amount);
 
     class Impl implements PsiCell {
 
@@ -38,7 +38,7 @@ public interface PsiCell {
         }
 
         @Override
-        public int injectCharge(int amount, EntityPlayer player) {
+        public int injectCharge(int amount) {
             return 0;
         }
 

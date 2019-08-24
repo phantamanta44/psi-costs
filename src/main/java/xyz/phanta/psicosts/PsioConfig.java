@@ -57,4 +57,25 @@ public class PsioConfig {
 
     }
 
+    @Config.Comment({
+            "Conversion scheme for Forge Energy.",
+            "By default, 1 FE = 1 PSI."
+    })
+    public static final ConversionConfig convForgeEnergy = new ConversionConfig(1D);
+
+    public static class ConversionConfig {
+
+        private ConversionConfig(double defaultRatio) {
+            this.ratio = defaultRatio;
+        }
+
+        @Config.RequiresMcRestart
+        @Config.Comment("Whether this conversion scheme is enabled or not.")
+        public boolean enabled = true;
+
+        @Config.Comment("The conversion ratio from this scheme to PSI energy.")
+        public double ratio;
+
+    }
+
 }

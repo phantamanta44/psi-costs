@@ -6,5 +6,7 @@ item.psicosts:psi_cell2.name=PSI-Dyne Cell
 item.psicosts:psi_cell3.name=PSI-Force Cell
 item.psicosts:psi_hypostim.name=PSI Stimulator
 
+tile.psicosts:flux_resonator.name=Flux Resonator
+
 psicosts.misc.tooltip.cell=Stores psionic energy.
 psicosts.misc.tooltip.hypostim=Single-use shot of psionic energy.

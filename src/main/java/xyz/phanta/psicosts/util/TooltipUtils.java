@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import xyz.phanta.psicosts.capability.PsiCell;
 import xyz.phanta.psicosts.capability.PsiProvider;
+import xyz.phanta.psicosts.constant.LangConst;
 import xyz.phanta.psicosts.init.PsioCaps;
 
 import java.util.Objects;
@@ -35,6 +36,10 @@ public class TooltipUtils {
 
     public static String formatInfo(String key) {
         return TextFormatting.GRAY + I18n.format(key);
+    }
+
+    public static String getCreativeMarker() {
+        return TextFormatting.DARK_GRAY + I18n.format(LangConst.TT_CREATIVE_ONLY);
     }
 
 }

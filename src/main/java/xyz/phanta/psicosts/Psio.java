@@ -2,12 +2,14 @@ package xyz.phanta.psicosts;
 
 import io.github.phantamanta44.libnine.Virtue;
 import io.github.phantamanta44.libnine.util.L9CreativeTab;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
+import xyz.phanta.psicosts.init.PsioItems;
 import xyz.phanta.psicosts.item.ItemPsiCell;
 
 @Mod(modid = Psio.MOD_ID, version = Psio.VERSION, useMetadata = true)
@@ -30,7 +32,7 @@ public class Psio extends Virtue {
     public static Logger LOGGER;
 
     public Psio() {
-        super(MOD_ID, new L9CreativeTab(MOD_ID, () -> ItemPsiCell.Tier.TIER_4.newStack(1)));
+        super(MOD_ID, new L9CreativeTab(MOD_ID, () -> new ItemStack(PsioItems.CREATIVE_CELL)));
     }
 
     @Mod.EventHandler

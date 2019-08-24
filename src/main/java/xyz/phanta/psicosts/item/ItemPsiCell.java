@@ -6,10 +6,13 @@ import io.github.phantamanta44.libnine.capability.provider.CapabilityBroker;
 import io.github.phantamanta44.libnine.client.model.ParameterizedItemModel;
 import io.github.phantamanta44.libnine.item.L9ItemSubs;
 import io.github.phantamanta44.libnine.util.helper.OptUtils;
+import io.github.phantamanta44.libnine.util.nbt.ChainingTagCompound;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.common.Optional;
@@ -36,6 +39,18 @@ public class ItemPsiCell extends L9ItemSubs implements ParameterizedItemModel.IP
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
         return new CapabilityBroker().with(PsioCaps.PSI_CELL, new RechargableCell(stack));
+    }
+
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        if (isInCreativeTab(tab)) {
+            for (Tier tier : Tier.VALUES) {
+                items.add(tier.newStack(1));
+                ItemStack full = tier.newStack(1);
+                full.setTagCompound(new ChainingTagCompound().withInt("PsioCharge", tier.maxCharge));
+                items.add(full);
+            }
+        }
     }
 
     @Override

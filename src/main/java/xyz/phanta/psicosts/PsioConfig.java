@@ -2,7 +2,7 @@ package xyz.phanta.psicosts;
 
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = Psio.MOD_ID)
+@Config(modid = Psio.MOD_ID, name = "psio")
 public class PsioConfig {
 
     @Config.RequiresMcRestart
@@ -83,7 +83,7 @@ public class PsioConfig {
 
         @Config.Comment("The maximum rate (in PSI/tick) at which PSI energy can be produced.")
         @Config.RangeInt(min = 1)
-        public int maxConversionRate = 12500;
+        public int maxConversionRate = 5000;
 
     }
 

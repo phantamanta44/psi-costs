@@ -16,12 +16,12 @@ import java.util.Objects;
 
 public class PsiCharger implements ISerializable {
 
-    private final PsioConfig.ConversionConfig conv;
+    private final PsioConfig.ConversionConfig conversion;
     private final IIntReservoir buffer;
 
-    public PsiCharger(PsioConfig.ConversionConfig conv, Runnable observer) {
-        this.conv = conv;
-        this.buffer = new SimpleIntReservoir(conv.psiBuffer);
+    public PsiCharger(PsioConfig.ConversionConfig conversion, Runnable observer) {
+        this.conversion = conversion;
+        this.buffer = new SimpleIntReservoir(conversion.psiBuffer);
         buffer.onQuantityChange((o, n) -> observer.run());
     }
 
@@ -34,7 +34,7 @@ public class PsiCharger implements ISerializable {
     }
 
     public double offer(double provided) {
-        return buffer.offer((int)Math.ceil(provided * conv.ratio), true) / conv.ratio;
+        return buffer.offer((int)Math.ceil(provided * conversion.ratio), true) / conversion.ratio;
     }
 
     public void tryCharge(ItemStack stack) {

@@ -5,6 +5,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import xyz.phanta.psicosts.capability.PsiCell;
+import xyz.phanta.psicosts.capability.PsiProvider;
 import xyz.phanta.psicosts.init.PsioCaps;
 
 import java.util.Objects;
@@ -16,9 +17,20 @@ public class TooltipUtils {
     }
 
     public static String formatPsiEnergy(PsiCell cell) {
-        return TextFormatting.AQUA + FormatUtils.formatSI(cell.getStoredCharge(), "PSI")
-                + TextFormatting.GRAY + " / "
-                + TextFormatting.AQUA + FormatUtils.formatSI(cell.getMaxCharge(), "PSI");
+        return formatPsiEnergy(cell.getStoredCharge(), cell.getMaxCharge());
+    }
+
+    public static String formatPsiEnergy(PsiProvider psi) {
+        return formatPsiEnergy(psi.getPsiEnergy(), psi.getPsiEnergyMax());
+    }
+
+    public static String formatPsiEnergy(int stored, int max) {
+        return formatFraction(stored, max, "PSI");
+    }
+
+    public static String formatFraction(int num, int denom, String unit) {
+        return TextFormatting.AQUA + FormatUtils.formatSI(num, unit)
+                + TextFormatting.GRAY + " / " + TextFormatting.AQUA + FormatUtils.formatSI(denom, unit);
     }
 
     public static String formatInfo(String key) {

@@ -8,5 +8,7 @@ item.psicosts:psi_hypostim.name=PSI Stimulator
 
 tile.psicosts:flux_resonator.name=Flux Resonator
 
+psicosts.misc.gui.flux_resonator=Flux Resonator
+
 psicosts.misc.tooltip.cell=Stores psionic energy.
 psicosts.misc.tooltip.hypostim=Single-use shot of psionic energy.

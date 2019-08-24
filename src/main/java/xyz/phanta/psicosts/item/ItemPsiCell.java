@@ -3,6 +3,7 @@ package xyz.phanta.psicosts.item;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import io.github.phantamanta44.libnine.capability.provider.CapabilityBroker;
+import io.github.phantamanta44.libnine.client.model.ParameterizedItemModel;
 import io.github.phantamanta44.libnine.item.L9ItemSubs;
 import io.github.phantamanta44.libnine.util.helper.OptUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles", striprefs = true)
-public class ItemPsiCell extends L9ItemSubs implements IBauble {
+public class ItemPsiCell extends L9ItemSubs implements ParameterizedItemModel.IParamaterized, IBauble {
 
     public ItemPsiCell() {
         super(LangConst.ITEM_PSI_CELL, Tier.VALUES.length);
@@ -56,6 +57,11 @@ public class ItemPsiCell extends L9ItemSubs implements IBauble {
     public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
         tooltip.add(TooltipUtils.formatPsiEnergy(stack));
         tooltip.add(TooltipUtils.formatInfo(LangConst.TT_CELL));
+    }
+
+    @Override
+    public void getModelMutations(ItemStack stack, ParameterizedItemModel.Mutation m) {
+        m.mutate("tier", Tier.getForStack(stack).name());
     }
 
     @Override

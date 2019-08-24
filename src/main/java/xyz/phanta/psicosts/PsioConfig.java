@@ -74,7 +74,16 @@ public class PsioConfig {
         public boolean enabled = true;
 
         @Config.Comment("The conversion ratio from this scheme to PSI energy.")
+        @Config.RangeDouble(min = 0)
         public double ratio;
+
+        @Config.Comment("The size of the conversion device's PSI energy buffer.")
+        @Config.RangeInt(min = 1)
+        public int psiBuffer = 80000;
+
+        @Config.Comment("The maximum rate (in PSI/tick) at which PSI energy can be produced.")
+        @Config.RangeInt(min = 1)
+        public int maxConversionRate = 12500;
 
     }
 

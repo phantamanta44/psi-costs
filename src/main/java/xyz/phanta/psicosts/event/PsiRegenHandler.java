@@ -22,15 +22,16 @@ public class PsiRegenHandler {
 
     @SubscribeEvent
     public void onPsiRegen(RegenPsiEvent event) {
-        if (event.getRegenCooldown() <= 0) {
+        EntityPlayer player = event.getPlayer();
+        if (!player.capabilities.isCreativeMode && event.getRegenCooldown() <= 0) {
             int cost = event.getPlayerRegen();
             if (cost > 0) {
-                Collection<PsiCell> cells = Psio.PROXY.getIntegrations().getInv(event.getPlayer())
+                Collection<PsiCell> cells = Psio.PROXY.getIntegrations().getInv(player)
                         .filter(s -> s.hasCapability(PsioCaps.PSI_CELL, null))
                         .map(s -> Objects.requireNonNull(s.getCapability(PsioCaps.PSI_CELL, null)))
                         .collect(Collectors.toList());
                 for (PsiCell cell : cells) {
-                    cost -= cell.extractCharge(cost, event.getPlayer());
+                    cost -= cell.extractCharge(cost, player);
                     if (cost <= 0) {
                         break;
                     }

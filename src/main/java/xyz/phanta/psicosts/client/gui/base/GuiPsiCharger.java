@@ -52,9 +52,9 @@ public class GuiPsiCharger<C extends ContainerPsiCharger<?>> extends L9GuiContai
         GlStateManager.color(1F, 1F, 1F, 1F);
     }
 
-    private static void drawRing(TextureRegion tex, float angle, float sign) {
+    private void drawRing(TextureRegion tex, float angle, float sign) {
         GlStateManager.pushMatrix();
-        GlStateManager.translate(88F + 392F, 43F + 167F, 0F);
+        GlStateManager.translate(88F + guiLeft, 43F + guiTop, 0F);
         GlStateManager.rotate(angle * sign, 0F, 0F, 1F);
         tex.draw(-32, -32, 64, 64);
         GlStateManager.popMatrix();

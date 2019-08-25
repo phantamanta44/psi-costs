@@ -3,6 +3,7 @@ package xyz.phanta.psicosts.integration.botania;
 import io.github.phantamanta44.libnine.block.L9Block;
 import io.github.phantamanta44.libnine.capability.impl.L9AspectSlot;
 import io.github.phantamanta44.libnine.component.reservoir.IIntReservoir;
+import io.github.phantamanta44.libnine.util.world.WorldUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -85,6 +86,15 @@ public class BlockManaResonator extends L9Block implements IWandHUD {
             }
         }
         return false;
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+        TileManaResonator tile = getTileEntity(world, pos);
+        if (tile != null) {
+            WorldUtils.dropItem(world, pos, tile.getInputSlot().getStackInSlot());
+        }
+        super.breakBlock(world, pos, state);
     }
 
     @Override

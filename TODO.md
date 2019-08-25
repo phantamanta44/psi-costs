@@ -1,5 +1,4 @@
 # general
-* tile entities should drop inv contents on destruction
 * crafting recipes
 
 # forge energy

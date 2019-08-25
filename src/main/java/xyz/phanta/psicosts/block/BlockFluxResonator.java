@@ -2,6 +2,7 @@ package xyz.phanta.psicosts.block;
 
 import io.github.phantamanta44.libnine.block.L9Block;
 import io.github.phantamanta44.libnine.util.world.WorldBlockPos;
+import io.github.phantamanta44.libnine.util.world.WorldUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +30,15 @@ public class BlockFluxResonator extends L9Block {
             Psio.INSTANCE.getGuiHandler().openGui(player, PsioGuis.FLUX_RESONATOR, new WorldBlockPos(world, pos));
         }
         return true;
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+        TileFluxResonator tile = getTileEntity(world, pos);
+        if (tile != null) {
+            WorldUtils.dropItem(world, pos, tile.getInputSlot().getStackInSlot());
+        }
+        super.breakBlock(world, pos, state);
     }
 
 }

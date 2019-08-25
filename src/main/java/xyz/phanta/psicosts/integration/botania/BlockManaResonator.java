@@ -4,6 +4,7 @@ import io.github.phantamanta44.libnine.block.L9Block;
 import io.github.phantamanta44.libnine.capability.impl.L9AspectSlot;
 import io.github.phantamanta44.libnine.component.reservoir.IIntReservoir;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -12,7 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.lwjgl.opengl.GL11;
@@ -25,11 +28,36 @@ import xyz.phanta.psicosts.util.TooltipUtils;
 
 public class BlockManaResonator extends L9Block implements IWandHUD {
 
+    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.8125D, 1D);
+
     public BlockManaResonator() {
         super(LangConst.BLOCK_MANA_RESONATOR, Material.ROCK);
         setHardness(4F);
         setTileFactory((w, m) -> new TileManaResonator());
-        // TODO special render
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return BOUNDING_BOX;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
+        return face == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 
     @Override

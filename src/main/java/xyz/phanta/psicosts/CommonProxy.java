@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import xyz.phanta.psicosts.event.PsiRegenHandler;
 import xyz.phanta.psicosts.integration.IntegrationManager;
 import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
+import xyz.phanta.psicosts.util.MagicCircleRender;
 
 public class CommonProxy {
 
@@ -30,6 +31,10 @@ public class CommonProxy {
 
     public IntegrationManager getIntegrations() {
         return intManager;
+    }
+
+    public MagicCircleRender newMagicCircleRender() {
+        return new MagicCircleRender.Noop();
     }
 
 }

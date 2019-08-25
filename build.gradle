@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-    compile 'io.github.phantamanta44.libnine:libnine-1.12.2:1.1.1'
+    compile 'io.github.phantamanta44.libnine:libnine-1.12.2:1.1.2'
     compile 'vazkii.autoreglib:AutoRegLib:1.3-33.34'
 }
 

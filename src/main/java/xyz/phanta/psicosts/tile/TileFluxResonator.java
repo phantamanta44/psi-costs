@@ -15,7 +15,7 @@ import xyz.phanta.psicosts.tile.base.TilePsiCharger;
 public class TileFluxResonator extends TilePsiCharger {
 
     @AutoSerialize
-    private final IIntReservoir energy = new SimpleIntReservoir((int)Math.ceil(getBufferSize()));
+    private final IIntReservoir energy = new SimpleIntReservoir(getBufferSizeInt());
 
     public TileFluxResonator() {
         super(PsioConfig.convForgeEnergy);
@@ -33,12 +33,7 @@ public class TileFluxResonator extends TilePsiCharger {
 
     @Override
     protected void tick() {
-        if (!world.isRemote && psiCharge.isNotFull()) {
-            int energyQty = energy.getQuantity();
-            if (energyQty > 0) {
-                energy.offsetQuantity(-(int)Math.ceil(psiCharge.offer(Math.min(energyQty, getConversionRate()))));
-            }
-        }
+        genPsiFromIntReservoir(energy);
         super.tick();
     }
 

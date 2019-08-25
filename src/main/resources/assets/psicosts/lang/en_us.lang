@@ -8,6 +8,7 @@ item.psicosts:creative_cell.name=Star of PSI
 item.psicosts:psi_hypostim.name=PSI Stimulator
 
 tile.psicosts:flux_resonator.name=Flux Resonator
+tile.psicosts:mana_resonator.name=Psionic Lensing Pedestal
 
 psicosts.misc.gui.flux_resonator=Flux Resonator
 

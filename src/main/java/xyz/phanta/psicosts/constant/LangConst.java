@@ -9,6 +9,7 @@ public class LangConst {
     public static final String ITEM_PSI_HYPOSTIM = "psi_hypostim";
 
     public static final String BLOCK_FLUX_RESONATOR = "flux_resonator";
+    public static final String BLOCK_MANA_RESONATOR = "mana_resonator";
 
     public static final String INV_FLUX_RESONATOR = BLOCK_FLUX_RESONATOR;
 

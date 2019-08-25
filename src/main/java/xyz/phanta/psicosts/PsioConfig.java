@@ -62,6 +62,11 @@ public class PsioConfig {
             "By default, 1 FE = 1 PSI."
     })
     public static final ConversionConfig convForgeEnergy = new ConversionConfig(1D);
+    @Config.Comment({
+            "Conversion scheme for Botania mana.",
+            "By default, 2 mana = 1 PSI (1 tablet refills the entire PSI bar about 50 times)."
+    })
+    public static final ConversionConfig convBotaniaMana = new ConversionConfig(0.5D);
 
     public static class ConversionConfig {
 

@@ -2,6 +2,7 @@ package xyz.phanta.psicosts.tile.base;
 
 import io.github.phantamanta44.libnine.capability.impl.L9AspectSlot;
 import io.github.phantamanta44.libnine.capability.provider.CapabilityBroker;
+import io.github.phantamanta44.libnine.component.reservoir.IIntReservoir;
 import io.github.phantamanta44.libnine.tile.L9TileEntityTicking;
 import io.github.phantamanta44.libnine.util.data.serialization.AutoSerialize;
 import io.github.phantamanta44.libnine.util.helper.OptUtils;
@@ -54,8 +55,21 @@ public class TilePsiCharger extends L9TileEntityTicking {
         }
     }
 
+    protected void genPsiFromIntReservoir(IIntReservoir reservoir) {
+        if (!world.isRemote && psiCharge.isNotFull()) {
+            int qty = reservoir.getQuantity();
+            if (qty > 0) {
+                reservoir.offsetQuantity(-(int)Math.ceil(psiCharge.offer(Math.min(qty, getConversionRate()))));
+            }
+        }
+    }
+
     protected double getBufferSize() {
         return conversion.psiBuffer / conversion.ratio;
+    }
+
+    protected int getBufferSizeInt() {
+        return (int)Math.ceil(getBufferSize());
     }
 
     protected double getConversionRate() {

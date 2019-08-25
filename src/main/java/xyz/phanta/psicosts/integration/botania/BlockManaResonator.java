@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -14,10 +15,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
+import org.lwjgl.opengl.GL11;
 import vazkii.botania.api.wand.IWandHUD;
 import vazkii.botania.client.core.handler.HUDHandler;
+import xyz.phanta.psicosts.capability.PsiProvider;
 import xyz.phanta.psicosts.constant.LangConst;
 import xyz.phanta.psicosts.init.PsioCaps;
+import xyz.phanta.psicosts.util.TooltipUtils;
 
 public class BlockManaResonator extends L9Block implements IWandHUD {
 
@@ -59,10 +63,17 @@ public class BlockManaResonator extends L9Block implements IWandHUD {
     public void renderHUD(Minecraft mc, ScaledResolution res, World world, BlockPos pos) {
         TileManaResonator tile = getTileEntity(world, pos);
         if (tile != null) {
+            int centerX = res.getScaledWidth() / 2, centerY = res.getScaledHeight() / 2;
             IIntReservoir mana = tile.getManaReservoir();
-            HUDHandler.drawSimpleManaHUD(0xA1AEF0, mana.getQuantity(), mana.getCapacity(), getLocalizedName(), res);
-            // TODO render held item
-            // TODO render psi buffer
+            HUDHandler.drawSimpleManaHUD(0x00FF00, mana.getQuantity(), mana.getCapacity(), getLocalizedName(), res);
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            PsiProvider psi = tile.getPsiProvider();
+            HUDHandler.renderManaBar(centerX - 51, centerY + 28, 0xA1AEF0, 1F, psi.getPsiEnergy(), psi.getPsiEnergyMax());
+            String psiStr = TooltipUtils.formatPsiEnergy(psi);
+            mc.fontRenderer.drawStringWithShadow(
+                    psiStr, centerX - mc.fontRenderer.getStringWidth(psiStr) / 2F, centerY + 36, 0xA1AEF0);
+            GlStateManager.disableBlend();
         }
     }
 

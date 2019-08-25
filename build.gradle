@@ -35,6 +35,8 @@ repositories {
 dependencies {
     compile 'io.github.phantamanta44.libnine:libnine-1.12.2:1.1.2'
     compile 'vazkii.autoreglib:AutoRegLib:1.3-33.34'
+    compile 'vazkii.psi:Psi:r1.1-78.77'
+    compile 'vazkii.botania:Botania:r1.10-362.99'
 }
 
 processResources {

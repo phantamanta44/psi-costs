@@ -2,20 +2,24 @@ package xyz.phanta.psicosts.integration.botania;
 
 import io.github.phantamanta44.libnine.block.L9Block;
 import io.github.phantamanta44.libnine.capability.impl.L9AspectSlot;
+import io.github.phantamanta44.libnine.component.reservoir.IIntReservoir;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
+import vazkii.botania.api.wand.IWandHUD;
+import vazkii.botania.client.core.handler.HUDHandler;
 import xyz.phanta.psicosts.constant.LangConst;
 import xyz.phanta.psicosts.init.PsioCaps;
 
-public class BlockManaResonator extends L9Block {
+public class BlockManaResonator extends L9Block implements IWandHUD {
 
     public BlockManaResonator() {
         super(LangConst.BLOCK_MANA_RESONATOR, Material.ROCK);
@@ -40,12 +44,26 @@ public class BlockManaResonator extends L9Block {
                 }
             } else {
                 inputSlot.setStackInSlot(ItemStack.EMPTY);
-                ItemHandlerHelper.giveItemToPlayer(player, inSlot,
-                        (hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.MAINHAND : EntityEquipmentSlot.OFFHAND).getIndex());
+                if (held.isEmpty()) {
+                    player.setHeldItem(hand, inSlot);
+                } else {
+                    ItemHandlerHelper.giveItemToPlayer(player, inSlot);
+                }
                 return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public void renderHUD(Minecraft mc, ScaledResolution res, World world, BlockPos pos) {
+        TileManaResonator tile = getTileEntity(world, pos);
+        if (tile != null) {
+            IIntReservoir mana = tile.getManaReservoir();
+            HUDHandler.drawSimpleManaHUD(0xA1AEF0, mana.getQuantity(), mana.getCapacity(), getLocalizedName(), res);
+            // TODO render held item
+            // TODO render psi buffer
+        }
     }
 
 }

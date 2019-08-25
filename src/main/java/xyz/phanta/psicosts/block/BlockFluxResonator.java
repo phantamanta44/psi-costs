@@ -18,6 +18,7 @@ public class BlockFluxResonator extends L9Block {
 
     public BlockFluxResonator() {
         super(LangConst.BLOCK_FLUX_RESONATOR, Material.IRON);
+        setHardness(4F);
         setTileFactory((w, m) -> new TileFluxResonator());
     }
 

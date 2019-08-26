@@ -36,7 +36,7 @@ public class RenderManaResonator extends TileEntitySpecialRenderer<TileManaReson
             float charge = OptUtils.capability(stack, PsioCaps.PSI_CELL)
                     .map(c -> c.getStoredCharge() / (float)c.getMaxCharge()).orElse(0F);
             circleRender.render3d(x + 0.5D, y + 0.91125D, z + 0.5D, 1.5F, charge);
-            circleRender.tick(charge);
+            circleRender.tick(charge, partialTicks);
         } else {
             circleRender.reset();
             circleRender.render3d(x + 0.5D, y + 0.91125D, z + 0.5D, 1.5F, 0F);

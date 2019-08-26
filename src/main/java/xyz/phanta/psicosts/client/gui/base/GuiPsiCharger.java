@@ -34,7 +34,7 @@ public class GuiPsiCharger<C extends ContainerPsiCharger<?>> extends L9GuiContai
             float charge = OptUtils.capability(stack, PsioCaps.PSI_CELL)
                     .map(c -> c.getStoredCharge() / (float)c.getMaxCharge()).orElse(0F);
             circleRender.render2d(guiLeft, guiTop, charge);
-            circleRender.tick(charge);
+            circleRender.tick(charge, partialTicks);
         } else {
             circleRender.reset();
             circleRender.render2d(guiLeft, guiTop, 0F);

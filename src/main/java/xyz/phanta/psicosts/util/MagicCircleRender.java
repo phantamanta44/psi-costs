@@ -1,7 +1,9 @@
 package xyz.phanta.psicosts.util;
 
+import io.github.phantamanta44.libnine.client.event.ClientTickHandler;
 import io.github.phantamanta44.libnine.util.format.TextFormatUtils;
 import io.github.phantamanta44.libnine.util.render.TextureRegion;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -17,7 +19,7 @@ public interface MagicCircleRender {
 
     void render3d(double x, double y, double z, float scale, float charge);
 
-    void tick(float charge);
+    void tick(float charge, float partialTicks);
 
     void reset();
 
@@ -25,6 +27,7 @@ public interface MagicCircleRender {
 
         private final float[] angles = { 0F, 0F, 0F };
         private float hue = 0F;
+        private long lastUpdate = ClientTickHandler.getTick();
 
         @Override
         public void render2d(float x, float y, float charge) {
@@ -73,10 +76,13 @@ public interface MagicCircleRender {
         }
 
         @Override
-        public void tick(float charge) {
-            hue += charge / 90F;
+        public void tick(float charge, float partialTicks) {
+            long now = ClientTickHandler.getTick();
+            float dt = (float)(now - lastUpdate) + partialTicks;
+            lastUpdate = now;
+            hue += charge * dt / 90F;
             for (int i = 0; i < 3; i++) {
-                angles[i] += charge * (i + 1);
+                angles[i] += charge * dt * (i + 1);
             }
         }
 
@@ -100,7 +106,7 @@ public interface MagicCircleRender {
         }
 
         @Override
-        public void tick(float charge) {
+        public void tick(float charge, float partialTicks) {
             // NO-OP
         }
 

@@ -3,8 +3,10 @@ package xyz.phanta.psicosts.integration.botania;
 import io.github.phantamanta44.libnine.LibNine;
 import xyz.phanta.psicosts.integration.PsioIntegration;
 
-@PsioIntegration.Register("botania")
+@PsioIntegration.Register(IntegrationBotania.MOD_ID)
 public class IntegrationBotania implements PsioIntegration {
+
+    public static final String MOD_ID = "botania";
 
     @Override
     public void registerEntries() {

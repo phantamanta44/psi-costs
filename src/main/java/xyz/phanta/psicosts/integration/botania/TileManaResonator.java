@@ -11,7 +11,7 @@ import xyz.phanta.psicosts.PsioConfig;
 import xyz.phanta.psicosts.tile.base.TilePsiCharger;
 import xyz.phanta.psicosts.util.MagicCircleRender;
 
-@RegisterTile(value = Psio.MOD_ID, deps = { "botania" })
+@RegisterTile(value = Psio.MOD_ID, deps = { IntegrationBotania.MOD_ID })
 public class TileManaResonator extends TilePsiCharger implements IManaBlock, IManaReceiver {
 
     @AutoSerialize

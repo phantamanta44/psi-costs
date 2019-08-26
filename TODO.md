@@ -8,7 +8,8 @@
 * lexica entry for mana convertor
 
 # astral sorcery
-* impl
+* model for starlight convertor
+* tome entry for starlight convertor
 
 # blood magic
 * impl

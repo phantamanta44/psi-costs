@@ -67,6 +67,11 @@ public class PsioConfig {
             "By default, 2 mana = 1 PSI (1 tablet refills the entire PSI bar about 50 times)."
     })
     public static final ConversionConfig convBotaniaMana = new ConversionConfig(0.5D);
+    @Config.Comment({
+            "Conversion scheme for Astral Sorcery liquid starlight.",
+            "By default, 1 mB starlight = 1 PSI."
+    })
+    public static final ConversionConfig convAstralStarlight = new ConversionConfig(1D);
 
     public static class ConversionConfig {
 

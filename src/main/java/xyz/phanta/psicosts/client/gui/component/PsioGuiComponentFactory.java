@@ -22,4 +22,10 @@ public class PsioGuiComponentFactory {
                 () -> TooltipUtils.formatFraction(src.getQuantity(), src.getCapacity(), unit));
     }
 
+    public static GuiComponentVerticalBar createFluidBar(int x, TextureRegion bg, TextureRegion fg, IIntReservoir src) {
+        return new GuiComponentVerticalBar(x, 7, bg, fg, 1, 1,
+                () -> src.getQuantity() / (float)src.getCapacity(),
+                () -> TooltipUtils.formatFraction(src.getQuantity() / 1000F, src.getCapacity() / 1000F, "B"));
+    }
+
 }

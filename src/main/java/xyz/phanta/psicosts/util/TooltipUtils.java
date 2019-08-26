@@ -34,6 +34,11 @@ public class TooltipUtils {
                 + TextFormatting.GRAY + " / " + TextFormatting.AQUA + FormatUtils.formatSI(denom, unit);
     }
 
+    public static String formatFraction(float num, float denom, String unit) {
+        return TextFormatting.AQUA + FormatUtils.formatSI(num, unit)
+                + TextFormatting.GRAY + " / " + TextFormatting.AQUA + FormatUtils.formatSI(denom, unit);
+    }
+
     public static String formatInfo(String key) {
         return TextFormatting.GRAY + I18n.format(key);
     }

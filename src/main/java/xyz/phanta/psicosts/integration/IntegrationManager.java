@@ -5,6 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.phanta.psicosts.Psio;
 import xyz.phanta.psicosts.util.InventoryProvider;
 
@@ -42,6 +44,19 @@ public class IntegrationManager {
                 integration.registerEntries();
             } catch (Exception e) {
                 Psio.LOGGER.error("Integration registration failed for {}!", integration.getClass());
+            }
+        }
+        LibNine.PROXY.getRegistrar().end();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void initClient() {
+        LibNine.PROXY.getRegistrar().begin(Psio.INSTANCE);
+        for (PsioIntegration integration : integrations) {
+            try {
+                integration.registerEntriesClient();
+            } catch (Exception e) {
+                Psio.LOGGER.error("Integration client registration failed for {}!", integration.getClass());
             }
         }
         LibNine.PROXY.getRegistrar().end();

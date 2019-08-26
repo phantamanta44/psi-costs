@@ -35,7 +35,7 @@ public class PsioGuis {
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends L9TileEntity> T getTile(World world, int x, int y, int z) {
+    public static <T extends L9TileEntity> T getTile(World world, int x, int y, int z) {
         return (T)Objects.requireNonNull(world.getTileEntity(new BlockPos(x, y, z)));
     }
 

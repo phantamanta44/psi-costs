@@ -10,13 +10,16 @@ public class LangConst {
 
     public static final String BLOCK_FLUX_RESONATOR = "flux_resonator";
     public static final String BLOCK_MANA_RESONATOR = "mana_resonator";
+    public static final String BLOCK_STARLIGHT_RESONATOR = "starlight_resonator";
 
     public static final String INV_FLUX_RESONATOR = BLOCK_FLUX_RESONATOR;
+    public static final String INV_STARLIGHT_RESONATOR = BLOCK_STARLIGHT_RESONATOR;
 
     private static final String MISC_KEY = Psio.MOD_ID + ".misc.";
 
     private static final String GUI_KEY = MISC_KEY + "gui.";
     public static final String GUI_FLUX_RESONATOR = GUI_KEY + INV_FLUX_RESONATOR;
+    public static final String GUI_STARLIGHT_RESONATOR = GUI_KEY + INV_STARLIGHT_RESONATOR;
 
     private static final String TT_KEY = MISC_KEY + "tooltip.";
     public static final String TT_CREATIVE_ONLY = TT_KEY + "creative_only";

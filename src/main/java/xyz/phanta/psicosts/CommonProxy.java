@@ -12,7 +12,7 @@ import xyz.phanta.psicosts.util.MagicCircleRender;
 
 public class CommonProxy {
 
-    private final IntegrationManager intManager = new IntegrationManager();
+    protected final IntegrationManager intManager = new IntegrationManager();
 
     public void onPreInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new PsiRegenHandler());

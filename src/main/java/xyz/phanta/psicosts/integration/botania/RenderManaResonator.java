@@ -24,6 +24,10 @@ public class RenderManaResonator extends TileEntitySpecialRenderer<TileManaReson
 
         // render circles
         MagicCircleRender circleRender = tile.getCircleRender();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(
+                GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
+                GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.disableLighting();
         RenderUtils.enableFullBrightness();
         if (stack.hasCapability(PsioCaps.PSI_CELL, null)) {
@@ -49,6 +53,7 @@ public class RenderManaResonator extends TileEntitySpecialRenderer<TileManaReson
             mc.getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.GROUND);
             GlStateManager.popMatrix();
         }
+        GlStateManager.disableBlend();
     }
 
 }

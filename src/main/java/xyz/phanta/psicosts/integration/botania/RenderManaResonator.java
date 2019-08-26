@@ -28,6 +28,8 @@ public class RenderManaResonator extends TileEntitySpecialRenderer<TileManaReson
         GlStateManager.tryBlendFuncSeparate(
                 GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
                 GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.disableAlpha();
+        GlStateManager.enableAlpha();
         GlStateManager.disableLighting();
         RenderUtils.enableFullBrightness();
         if (stack.hasCapability(PsioCaps.PSI_CELL, null)) {
@@ -53,6 +55,7 @@ public class RenderManaResonator extends TileEntitySpecialRenderer<TileManaReson
             mc.getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.GROUND);
             GlStateManager.popMatrix();
         }
+        GlStateManager.disableAlpha();
         GlStateManager.disableBlend();
     }
 

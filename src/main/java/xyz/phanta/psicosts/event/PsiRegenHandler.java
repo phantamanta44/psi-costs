@@ -7,12 +7,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.psi.api.PsiAPI;
 import vazkii.psi.api.cad.RegenPsiEvent;
 import vazkii.psi.api.internal.IPlayerData;
+import vazkii.psi.common.core.handler.PlayerDataHandler;
 import xyz.phanta.psicosts.Psio;
 import xyz.phanta.psicosts.PsioConfig;
 import xyz.phanta.psicosts.capability.PsiCell;
 import xyz.phanta.psicosts.init.PsioCaps;
 import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
-import xyz.phanta.psicosts.util.PsiReflect;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -53,14 +53,14 @@ public class PsiRegenHandler {
     public void onXpGain(PlayerPickupXpEvent event) {
         EntityPlayer player = event.getEntityPlayer();
         IPlayerData psiData = PsiAPI.internalHandler.getDataForPlayer(player);
-        if (PsiReflect.tPlayerData.isInstance(psiData)) {
+        if (psiData instanceof PlayerDataHandler.PlayerData) {
             int missingPsi = psiData.getTotalPsi() - psiData.getAvailablePsi();
             if (missingPsi > 0) {
                 double portion = Math.min(missingPsi,
                         event.getOrb().xpValue * PsioConfig.xpConfig.xpPsiFraction * PsioConfig.xpConfig.xpPsiMultiplier);
                 event.getOrb().xpValue -= Math.floor(portion / PsioConfig.xpConfig.xpPsiMultiplier);
                 int newPsiEnergy = Math.min(psiData.getAvailablePsi() + (int)Math.ceil(portion), psiData.getTotalPsi());
-                PsiReflect.fPlayerData_AvailablePsi.set(psiData, newPsiEnergy);
+                ((PlayerDataHandler.PlayerData)psiData).availablePsi = newPsiEnergy;
                 psiData.save();
                 if (player instanceof EntityPlayerMP) {
                     Psio.INSTANCE.getNetworkHandler().sendTo(new SPacketSyncPsiEnergy(newPsiEnergy), (EntityPlayerMP)player);

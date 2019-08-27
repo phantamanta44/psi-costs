@@ -5,6 +5,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import xyz.phanta.psicosts.event.PsiLevelUpHandler;
 import xyz.phanta.psicosts.event.PsiRegenHandler;
 import xyz.phanta.psicosts.integration.IntegrationManager;
 import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
@@ -16,6 +17,7 @@ public class CommonProxy {
 
     public void onPreInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new PsiRegenHandler());
+        MinecraftForge.EVENT_BUS.register(new PsiLevelUpHandler());
         intManager.loadIntegrations(event.getAsmData());
         Psio.INSTANCE.getNetworkHandler().registerMessage(
                 new SPacketSyncPsiEnergy.Handler(), SPacketSyncPsiEnergy.class, 0, Side.CLIENT);

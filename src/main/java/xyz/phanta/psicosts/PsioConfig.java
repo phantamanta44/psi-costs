@@ -10,6 +10,9 @@ public class PsioConfig {
     @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public static int psiStimCapacity = 25000;
 
+    @Config.Comment("Whether to fully level up all players on joining the server or not.")
+    public static boolean maximumPsiOnJoin = true;
+
     public static final PsiCellConfig psiCellConfig = new PsiCellConfig();
 
     public static class PsiCellConfig {

@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import vazkii.psi.api.PsiAPI;
 import vazkii.psi.api.internal.IPlayerData;
-import xyz.phanta.psicosts.util.PsiReflect;
+import vazkii.psi.common.core.handler.PlayerDataHandler;
 
 import javax.annotation.Nullable;
 
@@ -44,8 +44,8 @@ public class SPacketSyncPsiEnergy implements IMessage {
                 @Override
                 public void run() {
                     IPlayerData psiData = PsiAPI.internalHandler.getDataForPlayer(mc.player);
-                    if (PsiReflect.tPlayerData.isInstance(psiData)) {
-                        PsiReflect.fPlayerData_AvailablePsi.set(psiData, message.psiEnergy);
+                    if (psiData instanceof PlayerDataHandler.PlayerData) {
+                        ((PlayerDataHandler.PlayerData)psiData).availablePsi = message.psiEnergy;
                     }
                 }
             });

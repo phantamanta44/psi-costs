@@ -4,6 +4,7 @@ import io.github.phantamanta44.libnine.LibNine;
 import io.github.phantamanta44.libnine.gui.GuiIdentity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import xyz.phanta.psicosts.PsioConfig;
 import xyz.phanta.psicosts.constant.LangConst;
 import xyz.phanta.psicosts.init.PsioGuis;
 import xyz.phanta.psicosts.integration.PsioIntegration;
@@ -18,7 +19,9 @@ public class IntegrationBloodMagic implements PsioIntegration {
 
     @Override
     public void registerEntries() {
-        new BlockBloodResonator();
+        if (PsioConfig.convBloodMagicLp.enabled) {
+            new BlockBloodResonator();
+        }
         LibNine.PROXY.getRegistrar().queueGuiServerReg(BLOOD_RESONATOR,
                 (p, w, x, y, z) -> new ContainerBloodResonator(PsioGuis.getTile(w, x, y, z), p.inventory));
     }

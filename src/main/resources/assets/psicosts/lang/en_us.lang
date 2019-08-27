@@ -10,9 +10,11 @@ item.psicosts:psi_hypostim.name=PSI Stimulator
 tile.psicosts:flux_resonator.name=Flux Resonator
 tile.psicosts:mana_resonator.name=Psionic Lensing Pedestal
 tile.psicosts:starlight_resonator.name=Cold Light Projector
+tile.psicosts:blood_resonator.name=Sanguine Psiogenesis Device
 
 psicosts.misc.gui.flux_resonator=Flux Resonator
 psicosts.misc.gui.starlight_resonator=Cold Light Projector
+psicosts.misc.gui.blood_resonator=Sanguine Psiogenesis Device
 
 psicosts.misc.tooltip.creative_only=(Creative-Only)
 psicosts.misc.tooltip.cell=Stores psionic energy.

@@ -13,7 +13,7 @@ public class IntegrationAstral implements PsioIntegration {
 
     public static final String MOD_ID = "astralsorcery";
 
-    public static GuiIdentity<ContainerStarlightResonator, GuiStarlightResonator> STARLIGHT_RESONATOR
+    public static final GuiIdentity<ContainerStarlightResonator, GuiStarlightResonator> STARLIGHT_RESONATOR
             = new GuiIdentity<>(LangConst.INV_STARLIGHT_RESONATOR, ContainerStarlightResonator.class);
 
     @Override

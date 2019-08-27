@@ -31,6 +31,7 @@ repositories {
     mavenLocal()
     maven { url 'https://maven.blamejared.com/' }
     maven { url 'https://minecraft.curseforge.com/api/maven/' }
+    maven { url "http://tehnut.info/maven/" }
 }
 
 dependencies {
@@ -39,6 +40,7 @@ dependencies {
     compile 'vazkii.psi:Psi:r1.1-78.77'
     compile 'vazkii.botania:Botania:r1.10-362.99'
     deobfCompile "astral-sorcery:AstralSorcery:1.12.2:1.10.20"
+    deobfCompile "com.wayoftime.bloodmagic:BloodMagic:1.12.2-2.4.1-103"
 }
 
 processResources {

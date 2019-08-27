@@ -72,6 +72,11 @@ public class PsioConfig {
             "By default, 1 mB starlight = 1 PSI."
     })
     public static final ConversionConfig convAstralStarlight = new ConversionConfig(1D);
+    @Config.Comment({
+            "Conversion scheme for Blood Magic life essence.",
+            "By default, 1 LP = 3 PSI."
+    })
+    public static final ConversionConfig convBloodMagicLp = new ConversionConfig(3D);
 
     public static class ConversionConfig {
 

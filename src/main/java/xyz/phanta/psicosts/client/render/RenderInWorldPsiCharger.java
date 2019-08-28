@@ -1,4 +1,4 @@
-package xyz.phanta.psicosts.integration.botania;
+package xyz.phanta.psicosts.client.render;
 
 import io.github.phantamanta44.libnine.client.event.ClientTickHandler;
 import io.github.phantamanta44.libnine.util.helper.OptUtils;
@@ -12,12 +12,28 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import xyz.phanta.psicosts.init.PsioCaps;
+import xyz.phanta.psicosts.tile.base.TileInWorldPsiCharger;
 import xyz.phanta.psicosts.util.MagicCircleRender;
 
-public class RenderManaResonator extends TileEntitySpecialRenderer<TileManaResonator> {
+public class RenderInWorldPsiCharger<T extends TileInWorldPsiCharger> extends TileEntitySpecialRenderer<T> {
+
+    private final double circleAltitude;
+    private final float circleScale;
+    private final double itemAltitude;
+    private final double itemAltitudeVariance;
+    private final float itemScale;
+
+    public RenderInWorldPsiCharger(double circleAltitude, float circleScale,
+                                   double itemAltitude, double itemAltitudeVariance, float itemScale) {
+        this.circleAltitude = circleAltitude;
+        this.circleScale = circleScale;
+        this.itemAltitude = itemAltitude;
+        this.itemAltitudeVariance = itemAltitudeVariance;
+        this.itemScale = itemScale;
+    }
 
     @Override
-    public void render(TileManaResonator tile, double x, double y, double z, float partialTicks,
+    public void render(T tile, double x, double y, double z, float partialTicks,
                        int destroyStage, float alpha) {
         Minecraft mc = Minecraft.getMinecraft();
         ItemStack stack = tile.getInputSlot().getStackInSlot();
@@ -35,11 +51,11 @@ public class RenderManaResonator extends TileEntitySpecialRenderer<TileManaReson
         if (stack.hasCapability(PsioCaps.PSI_CELL, null)) {
             float charge = OptUtils.capability(stack, PsioCaps.PSI_CELL)
                     .map(c -> c.getStoredCharge() / (float)c.getMaxCharge()).orElse(0F);
-            circleRender.render3d(x + 0.5D, y + 0.91125D, z + 0.5D, 1.5F, charge);
+            circleRender.render3d(x + 0.5D, y + circleAltitude, z + 0.5D, circleScale, charge);
             circleRender.tick(charge, partialTicks);
         } else {
             circleRender.reset();
-            circleRender.render3d(x + 0.5D, y + 0.91125D, z + 0.5D, 1.5F, 0F);
+            circleRender.render3d(x + 0.5D, y + circleAltitude, z + 0.5D, circleScale, 0F);
         }
         RenderUtils.restoreLightmap();
         GlStateManager.enableLighting();
@@ -48,8 +64,9 @@ public class RenderManaResonator extends TileEntitySpecialRenderer<TileManaReson
         if (!stack.isEmpty()) {
             float ticks = ClientTickHandler.getTick() + (float)(x + y + z) + partialTicks;
             GlStateManager.pushMatrix();
-            GlStateManager.translate(x + 0.5D, y + 1.025D + 0.075D * MathHelper.sin(ticks / 12F), z + 0.5D);
-            GlStateManager.scale(1.25F, 1.25F, 1.25F);
+            GlStateManager.translate(
+                    x + 0.5D, y + itemAltitude + itemAltitudeVariance * MathHelper.sin(ticks / 12F), z + 0.5D);
+            GlStateManager.scale(itemScale, itemScale, itemScale);
             GlStateManager.rotate(ticks / 14F * MathUtils.R2D_F, 0F, 1F, 0F);
             mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             mc.getRenderItem().renderItem(stack, ItemCameraTransforms.TransformType.GROUND);

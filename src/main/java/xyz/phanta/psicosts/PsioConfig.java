@@ -80,6 +80,11 @@ public class PsioConfig {
             "By default, 1 LP = 3 PSI."
     })
     public static final ConversionConfig convBloodMagicLp = new ConversionConfig(3D);
+    @Config.Comment({
+            "Conversion scheme for Embers ember.",
+            "By default, 1 ember = 5 PSI."
+    })
+    public static final ConversionConfig convEmbersEmber = new ConversionConfig(5D);
 
     public static class ConversionConfig {
 

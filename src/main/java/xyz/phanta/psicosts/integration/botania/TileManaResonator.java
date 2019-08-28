@@ -8,16 +8,13 @@ import vazkii.botania.api.mana.IManaBlock;
 import vazkii.botania.api.mana.IManaReceiver;
 import xyz.phanta.psicosts.Psio;
 import xyz.phanta.psicosts.PsioConfig;
-import xyz.phanta.psicosts.tile.base.TilePsiCharger;
-import xyz.phanta.psicosts.util.MagicCircleRender;
+import xyz.phanta.psicosts.tile.base.TileInWorldPsiCharger;
 
 @RegisterTile(value = Psio.MOD_ID, deps = { IntegrationBotania.MOD_ID })
-public class TileManaResonator extends TilePsiCharger implements IManaBlock, IManaReceiver {
+public class TileManaResonator extends TileInWorldPsiCharger implements IManaBlock, IManaReceiver {
 
     @AutoSerialize
     private final IIntReservoir mana = new SimpleIntReservoir(getBufferSizeInt());
-
-    private final MagicCircleRender circleRender = Psio.PROXY.newMagicCircleRender();
 
     public TileManaResonator() {
         super(PsioConfig.convBotaniaMana);
@@ -26,10 +23,6 @@ public class TileManaResonator extends TilePsiCharger implements IManaBlock, IMa
 
     public IIntReservoir getManaReservoir() {
         return mana;
-    }
-
-    public MagicCircleRender getCircleRender() {
-        return circleRender;
     }
 
     @Override

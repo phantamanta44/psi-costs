@@ -11,6 +11,7 @@ tile.psicosts:flux_resonator.name=Flux Resonator
 tile.psicosts:mana_resonator.name=Psionic Lensing Pedestal
 tile.psicosts:starlight_resonator.name=Cold Light Projector
 tile.psicosts:blood_resonator.name=Sanguine Psiogenesis Device
+tile.psicosts:ember_resonator.name=Psionic Induction Cage
 
 psicosts.misc.gui.flux_resonator=Flux Resonator
 psicosts.misc.gui.starlight_resonator=Cold Light Projector
@@ -20,3 +21,5 @@ psicosts.misc.tooltip.creative_only=(Creative-Only)
 psicosts.misc.tooltip.cell=Stores psionic energy.
 psicosts.misc.tooltip.creative_cell=Provides infinite psionic energy.
 psicosts.misc.tooltip.hypostim=Single-use shot of psionic energy.
+
+psicosts.misc.embers_cap_type.psi_cell=PSI Cell

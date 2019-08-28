@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xyz.phanta.psicosts.Psio;
 import xyz.phanta.psicosts.constant.LangConst;
-import xyz.phanta.psicosts.util.FluidTankUtil;
+import xyz.phanta.psicosts.util.BlockInteractionUtil;
 
 public class BlockStarlightResonator extends L9Block {
 
@@ -27,7 +27,7 @@ public class BlockStarlightResonator extends L9Block {
                                     EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             TileStarlightResonator tile = getTileEntity(world, pos);
-            if (tile != null && FluidTankUtil.fillTankFromHand(
+            if (tile != null && BlockInteractionUtil.fillTankFromHand(
                     tile, tile.getStarlightTank().getRemainingCapacity(), player, hand)) {
                 return true;
             }

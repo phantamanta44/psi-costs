@@ -18,7 +18,8 @@
 * portable convertor that takes LP from player (?)
 
 # embers
-* impl
+* codex entry for ember convertor
+* portable convertor that takes ember from inv (?)
 
 # thaumcraft
 * impl

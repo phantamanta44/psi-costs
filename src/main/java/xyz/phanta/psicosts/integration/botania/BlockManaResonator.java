@@ -1,7 +1,6 @@
 package xyz.phanta.psicosts.integration.botania;
 
 import io.github.phantamanta44.libnine.block.L9Block;
-import io.github.phantamanta44.libnine.capability.impl.L9AspectSlot;
 import io.github.phantamanta44.libnine.component.reservoir.IIntReservoir;
 import io.github.phantamanta44.libnine.util.world.WorldUtils;
 import net.minecraft.block.material.Material;
@@ -11,7 +10,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -19,13 +17,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemHandlerHelper;
 import org.lwjgl.opengl.GL11;
 import vazkii.botania.api.wand.IWandHUD;
 import vazkii.botania.client.core.handler.HUDHandler;
 import xyz.phanta.psicosts.capability.PsiProvider;
 import xyz.phanta.psicosts.constant.LangConst;
-import xyz.phanta.psicosts.init.PsioCaps;
+import xyz.phanta.psicosts.util.BlockInteractionUtil;
 import xyz.phanta.psicosts.util.TooltipUtils;
 
 public class BlockManaResonator extends L9Block implements IWandHUD {
@@ -71,27 +68,7 @@ public class BlockManaResonator extends L9Block implements IWandHUD {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
                                     EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileManaResonator tile = getTileEntity(world, pos);
-        if (tile != null) {
-            L9AspectSlot inputSlot = tile.getInputSlot();
-            ItemStack inSlot = inputSlot.getStackInSlot();
-            ItemStack held = player.getHeldItem(hand);
-            if (inSlot.isEmpty()) {
-                if (held.hasCapability(PsioCaps.PSI_CELL, null)) {
-                    player.setHeldItem(hand, ItemStack.EMPTY);
-                    inputSlot.setStackInSlot(held);
-                    return true;
-                }
-            } else {
-                inputSlot.setStackInSlot(ItemStack.EMPTY);
-                if (held.isEmpty()) {
-                    player.setHeldItem(hand, inSlot);
-                } else {
-                    ItemHandlerHelper.giveItemToPlayer(player, inSlot);
-                }
-                return true;
-            }
-        }
-        return false;
+        return tile != null && BlockInteractionUtil.placeCellFromHand(tile.getInputSlot(), player, hand);
     }
 
     @Override

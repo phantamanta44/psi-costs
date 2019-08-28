@@ -5,7 +5,9 @@ import io.github.phantamanta44.libnine.util.world.WorldUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -14,6 +16,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import xyz.phanta.psicosts.constant.LangConst;
 import xyz.phanta.psicosts.util.BlockInteractionUtil;
+import xyz.phanta.psicosts.util.TooltipUtils;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockEmberResonator extends L9Block {
 
@@ -44,6 +50,11 @@ public class BlockEmberResonator extends L9Block {
     @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
+        tooltip.add(TooltipUtils.formatInfo(LangConst.TT_CHARGER_EMBERS_EMBER));
     }
 
     @Override

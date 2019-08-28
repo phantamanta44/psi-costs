@@ -6,6 +6,7 @@ import io.github.phantamanta44.libnine.util.world.WorldBlockPos;
 import io.github.phantamanta44.libnine.util.world.WorldUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -21,6 +22,10 @@ import thaumcraft.api.items.ItemsTC;
 import thaumcraft.common.items.consumables.ItemPhial;
 import xyz.phanta.psicosts.Psio;
 import xyz.phanta.psicosts.constant.LangConst;
+import xyz.phanta.psicosts.util.TooltipUtils;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockEssentiaResonator extends L9Block {
 
@@ -28,6 +33,11 @@ public class BlockEssentiaResonator extends L9Block {
         super(LangConst.BLOCK_ESSENTIA_RESONATOR, Material.IRON);
         setHardness(4F);
         setTileFactory((w, m) -> new TileEssentiaResonator());
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
+        tooltip.add(TooltipUtils.formatInfo(LangConst.TT_CHARGER_THAUM_ESSENTIA));
     }
 
     @Override

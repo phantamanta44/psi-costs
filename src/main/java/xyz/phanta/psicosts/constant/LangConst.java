@@ -34,4 +34,12 @@ public class LangConst {
     public static final String TT_CREATIVE_CELL = TT_KEY + "creative_cell";
     public static final String TT_HYPOSTIM = TT_KEY + "hypostim";
 
+    private static final String TT_CHARGER_KEY = TT_KEY + "charger.";
+    public static final String TT_CHARGER_FORGE_ENERGY = TT_CHARGER_KEY + "forge_energy";
+    public static final String TT_CHARGER_BOTANIA_MANA = TT_CHARGER_KEY + "botania_mana";
+    public static final String TT_CHARGER_ASTRAL_STARLIGHT = TT_CHARGER_KEY + "astral_starlight";
+    public static final String TT_CHARGER_BLOOD_MAGIC_LP = TT_CHARGER_KEY + "bloodmagic_lp";
+    public static final String TT_CHARGER_EMBERS_EMBER = TT_CHARGER_KEY + "embers_ember";
+    public static final String TT_CHARGER_THAUM_ESSENTIA = TT_CHARGER_KEY + "thaum_essentia";
+
 }

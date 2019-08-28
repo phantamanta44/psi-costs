@@ -9,7 +9,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -24,6 +26,9 @@ import xyz.phanta.psicosts.capability.PsiProvider;
 import xyz.phanta.psicosts.constant.LangConst;
 import xyz.phanta.psicosts.util.BlockInteractionUtil;
 import xyz.phanta.psicosts.util.TooltipUtils;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockManaResonator extends L9Block implements IWandHUD {
 
@@ -62,6 +67,11 @@ public class BlockManaResonator extends L9Block implements IWandHUD {
     @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
+        tooltip.add(TooltipUtils.formatInfo(LangConst.TT_CHARGER_BOTANIA_MANA));
     }
 
     @Override

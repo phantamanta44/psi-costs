@@ -62,9 +62,9 @@ public class PsioConfig {
 
     @Config.Comment({
             "Conversion scheme for Forge Energy.",
-            "By default, 1 FE = 1 PSI."
+            "By default, 5 FE = 1 PSI."
     })
-    public static final ConversionConfig convForgeEnergy = new ConversionConfig(1D);
+    public static final ConversionConfig convForgeEnergy = new ConversionConfig(0.2D);
     @Config.Comment({
             "Conversion scheme for Botania mana.",
             "By default, 2 mana = 1 PSI (1 tablet refills the entire PSI bar about 50 times)."
@@ -85,6 +85,11 @@ public class PsioConfig {
             "By default, 1 ember = 5 PSI."
     })
     public static final ConversionConfig convEmbersEmber = new ConversionConfig(5D);
+    @Config.Comment({
+            "Conversion scheme for Thaumcraft potentia essentia.",
+            "By default, 1 essentia = 250 PSI."
+    })
+    public static final ConversionConfig convThaumEssentia = new ConversionConfig(250D);
 
     public static class ConversionConfig {
 

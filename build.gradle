@@ -45,6 +45,7 @@ dependencies {
     deobfCompile "astral-sorcery:AstralSorcery:1.12.2:1.10.20"
     deobfCompile "com.wayoftime.bloodmagic:BloodMagic:1.12.2-2.4.1-103"
     deobfCompile "teamroots.embers:EmbersRekindled:1.13"
+    deobfCompile "thaumcraft:Thaumcraft:1.12.2:6.1.BETA26"
 }
 
 processResources {
@@ -55,11 +56,11 @@ processResources {
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
-        
+
     // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'

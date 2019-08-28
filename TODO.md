@@ -1,5 +1,7 @@
 # general
 * crafting recipes
+* means of wirelessly pulling psi from convertors
+* tooltips for all psi convertors
 
 # forge energy
 * model for flux resonator
@@ -22,4 +24,5 @@
 * portable convertor that takes ember from inv (?)
 
 # thaumcraft
-* impl
+* nomicon entry for essentia convertor
+* model for essentia convertor

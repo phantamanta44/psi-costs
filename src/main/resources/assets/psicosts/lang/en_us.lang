@@ -12,10 +12,12 @@ tile.psicosts:mana_resonator.name=Psionic Lensing Pedestal
 tile.psicosts:starlight_resonator.name=Cold Light Projector
 tile.psicosts:blood_resonator.name=Sanguine Psiogenesis Device
 tile.psicosts:ember_resonator.name=Psionic Induction Cage
+tile.psicosts:essentia_resonator.name=Potentia Inverter
 
 psicosts.misc.gui.flux_resonator=Flux Resonator
 psicosts.misc.gui.starlight_resonator=Cold Light Projector
 psicosts.misc.gui.blood_resonator=Sanguine Psiogenesis Device
+psicosts.misc.gui.essentia_resonator=Potentia Inverter
 
 psicosts.misc.tooltip.creative_only=(Creative-Only)
 psicosts.misc.tooltip.cell=Stores psionic energy.

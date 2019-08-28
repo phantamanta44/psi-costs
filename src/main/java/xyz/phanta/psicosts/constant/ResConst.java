@@ -26,6 +26,9 @@ public class ResConst {
     private static final TextureResource GC_BLOOD_BAR = Psio.INSTANCE.newTextureResource(GC_KEY + "blood_bar.png", 6, 72);
     public static final TextureRegion GC_BLOOD_BAR_BG = GC_BLOOD_BAR.getRegion(0, 0, 4, 72);
     public static final TextureRegion GC_BLOOD_BAR_FG = GC_BLOOD_BAR.getRegion(4, 0, 2, 70);
+    private static final TextureResource GC_ESSENTIA_BAR = Psio.INSTANCE.newTextureResource(GC_KEY + "essentia_bar.png", 6, 72);
+    public static final TextureRegion GC_ESSENTIA_BAR_BG = GC_ESSENTIA_BAR.getRegion(0, 0, 4, 72);
+    public static final TextureRegion GC_ESSENTIA_BAR_FG = GC_ESSENTIA_BAR.getRegion(4, 0, 2, 70);
 
     public static final TextureRegion[] EXT_PSI_SPELL_CIRCLE
             = { getSpellCircle("0"), getSpellCircle("1"), getSpellCircle("2") };

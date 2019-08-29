@@ -55,8 +55,8 @@ public class BlockStarlightResonator extends L9Block {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
                                     EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileStarlightResonator tile = getTileEntity(world, pos);
-        return tile != null && (BlockInteractionUtil.placeCellFromHand(tile.getInputSlot(), player, hand)
-                || BlockInteractionUtil.fillTankFromHand(tile, tile.getStarlightTank().getRemainingCapacity(), player, hand));
+        return tile != null && (BlockInteractionUtil.fillTankFromHand(tile, tile.getStarlightTank().getRemainingCapacity(), player, hand)
+                || BlockInteractionUtil.placeCellFromHand(tile.getInputSlot(), player, hand));
     }
 
     @Override

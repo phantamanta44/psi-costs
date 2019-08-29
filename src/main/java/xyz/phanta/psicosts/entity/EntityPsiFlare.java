@@ -9,6 +9,7 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -21,7 +22,8 @@ import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
 
 public class EntityPsiFlare extends EntityThrowable {
 
-    private static final float DIMS = 3F;
+    private static final float DIMS = 2.5F;
+    private static final float DIMS_SQ = DIMS * DIMS;
     private static final float INITIAL_VEL = 0.25F;
     private static final float GRAVITY_FACTOR = 4F;
 
@@ -30,6 +32,7 @@ public class EntityPsiFlare extends EntityThrowable {
 
     public EntityPsiFlare(World world) {
         super(world);
+        this.ticksExisted = 3;
         setSize(DIMS, DIMS);
     }
 
@@ -45,6 +48,7 @@ public class EntityPsiFlare extends EntityThrowable {
         this.motionY = dPos.y * INITIAL_VEL;
         this.motionZ = dPos.z * INITIAL_VEL;
         this.thrower = target;
+        this.ticksExisted = 3;
         setPsiEnergy(energy);
     }
 
@@ -69,13 +73,13 @@ public class EntityPsiFlare extends EntityThrowable {
 
     @Override
     public void onUpdate() {
-        if (ticksExisted > 100) {
+        if (ticksExisted > 103) {
             setDead();
         } else {
             super.onUpdate();
             if (world.isRemote) {
                 if (isEntityAlive()) {
-                    Psi.proxy.wispFX(world, posX, posY, posZ, 0.3F, 0.4F, 0.9F, 0.275F);
+                    Psi.proxy.sparkleFX(world, posX, posY, posZ, 0.3F, 0.4F, 0.9F, 4F, 3);
                 }
             } else {
                 EntityLivingBase target = getThrower();
@@ -83,13 +87,18 @@ public class EntityPsiFlare extends EntityThrowable {
                     setDead();
                 } else if (isEntityAlive()) {
                     Vec3d dPos = target.getPositionEyes(1F).subtract(posX, posY, posZ);
-                    double magn = dPos.length();
-                    double gravity = Math.max(magn, 1D);
-                    gravity = GRAVITY_FACTOR / (magn * gravity * gravity);
-                    motionX += dPos.x * gravity;
-                    motionY += dPos.y * gravity;
-                    motionZ += dPos.z * gravity;
-                    velocityChanged = true;
+                    double magn = dPos.lengthSquared();
+                    if (magn <= DIMS_SQ) {
+                        impartTo(target);
+                    } else {
+                        magn = MathHelper.sqrt(magn);
+                        double gravity = Math.max(magn, 1D);
+                        gravity = GRAVITY_FACTOR / (magn * gravity * gravity);
+                        motionX += dPos.x * gravity;
+                        motionY += dPos.y * gravity;
+                        motionZ += dPos.z * gravity;
+                        velocityChanged = true;
+                    }
                 }
             }
         }
@@ -100,20 +109,24 @@ public class EntityPsiFlare extends EntityThrowable {
         if (!world.isRemote && result.entityHit != null) {
             EntityLivingBase target = getThrower();
             if (target != null && result.entityHit.getUniqueID().equals(target.getUniqueID())) {
-                if (target instanceof EntityPlayer) {
-                    IPlayerData playerDataUnchecked = PsiAPI.internalHandler.getDataForPlayer((EntityPlayer)target);
-                    if (playerDataUnchecked instanceof PlayerDataHandler.PlayerData) {
-                        PlayerDataHandler.PlayerData playerData = (PlayerDataHandler.PlayerData)playerDataUnchecked;
-                        playerData.availablePsi += getPsiEnergy();
-                        if (target instanceof EntityPlayerMP) {
-                            Psio.INSTANCE.getNetworkHandler().sendTo(
-                                    new SPacketSyncPsiEnergy(playerData.availablePsi), (EntityPlayerMP)target);
-                        }
-                    }
-                }
-                setDead();
+                impartTo(target);
             }
         }
+    }
+
+    private void impartTo(EntityLivingBase target) {
+        if (target instanceof EntityPlayer) {
+            IPlayerData playerDataUnchecked = PsiAPI.internalHandler.getDataForPlayer((EntityPlayer)target);
+            if (playerDataUnchecked instanceof PlayerDataHandler.PlayerData) {
+                PlayerDataHandler.PlayerData playerData = (PlayerDataHandler.PlayerData)playerDataUnchecked;
+                playerData.availablePsi += getPsiEnergy();
+                if (target instanceof EntityPlayerMP) {
+                    Psio.INSTANCE.getNetworkHandler().sendTo(
+                            new SPacketSyncPsiEnergy(playerData.availablePsi), (EntityPlayerMP)target);
+                }
+            }
+        }
+        setDead();
     }
 
     @Override

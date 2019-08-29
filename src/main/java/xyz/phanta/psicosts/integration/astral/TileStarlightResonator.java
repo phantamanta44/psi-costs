@@ -12,14 +12,15 @@ import io.github.phantamanta44.libnine.tile.RegisterTile;
 import io.github.phantamanta44.libnine.util.data.serialization.AutoSerialize;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import vazkii.psi.common.Psi;
 import xyz.phanta.psicosts.Psio;
 import xyz.phanta.psicosts.PsioConfig;
-import xyz.phanta.psicosts.tile.base.TilePsiCharger;
+import xyz.phanta.psicosts.tile.base.TileInWorldPsiCharger;
 
 import java.util.List;
 
 @RegisterTile(value = Psio.MOD_ID, deps = { IntegrationAstral.MOD_ID })
-public class TileStarlightResonator extends TilePsiCharger implements ILiquidStarlightPowered {
+public class TileStarlightResonator extends TileInWorldPsiCharger implements ILiquidStarlightPowered {
 
     @AutoSerialize
     private final FluidReservoir tank = new FluidReservoir(
@@ -42,7 +43,16 @@ public class TileStarlightResonator extends TilePsiCharger implements ILiquidSta
 
     @Override
     protected void tick() {
-        if (!world.isRemote && world.rand.nextFloat() < 0.05F) {
+        if (world.isRemote) {
+            float frac = getPsiProvider().getPsiEnergy() / (float)getPsiProvider().getPsiEnergyMax();
+            if (frac > 0F) {
+                Psi.proxy.wispFX(world,
+                        pos.getX() + 0.5F + (float)world.rand.nextGaussian() * 0.05F,
+                        pos.getY() + 0.1D,
+                        pos.getZ() + 0.5F + (float)world.rand.nextGaussian() * 0.05F,
+                        0.3F, 0.4F, 0.9F, 0.05F + frac * 0.15F, 0F, 0.025F, 0F);
+            }
+        } else if (world.rand.nextFloat() < 0.05F) {
             int missing = tank.getRemainingCapacity();
             if (missing > 0) {
                 List<TileChalice> chalices = LiquidStarlightChaliceHandler

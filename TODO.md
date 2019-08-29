@@ -2,7 +2,6 @@
 * crafting recipes
 
 # forge energy
-* model for flux resonator
 * portable convertor that can be charged via flux caps (?)
 
 # botania

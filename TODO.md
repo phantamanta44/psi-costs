@@ -23,4 +23,3 @@
 
 # thaumcraft
 * nomicon entry for essentia convertor
-* model for essentia convertor

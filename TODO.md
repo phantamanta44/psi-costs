@@ -13,6 +13,7 @@
 * tome entry for starlight convertor
 
 # blood magic
+* manual entry for life essence convertor
 * model for life essence convertor
 * portable convertor that takes LP from player (?)
 

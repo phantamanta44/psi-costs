@@ -32,6 +32,9 @@ public class TileEssentiaResonator extends TilePsiCharger implements IEssentiaTr
     @Override
     protected void tick() {
         for (EnumFacing dir : EnumFacing.VALUES) {
+            if (essentia.getQuantity() >= essentia.getCapacity()) {
+                break;
+            }
             IEssentiaTransport pipe = (IEssentiaTransport)ThaumcraftApiHelper.getConnectableTile(world, pos, dir);
             if (pipe != null) {
                 EnumFacing face = dir.getOpposite();

@@ -1,0 +1,7 @@
+{
+  "psio.effect.draw_psi": {
+    "sounds": [
+      "psicosts:effects/draw_psi"
+    ]
+  }
+}

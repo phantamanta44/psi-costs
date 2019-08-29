@@ -1,6 +1,5 @@
 # general
 * crafting recipes
-* means of wirelessly pulling psi from convertors
 
 # forge energy
 * model for flux resonator

@@ -20,6 +20,8 @@ public class LangConst {
     public static final String INV_BLOOD_RESONATOR = BLOCK_BLOOD_RESONATOR;
     public static final String INV_ESSENTIA_RESONATOR = BLOCK_ESSENTIA_RESONATOR;
 
+    public static final String ENTITY_PSI_FLARE = "psi_flare";
+
     public static final String MISC_KEY = Psio.MOD_ID + ".misc.";
 
     private static final String GUI_KEY = MISC_KEY + "gui.";

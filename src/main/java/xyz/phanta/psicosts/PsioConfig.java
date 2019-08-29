@@ -60,6 +60,30 @@ public class PsioConfig {
 
     }
 
+    public static final TrickDrawEnergyConfig trickDrawEnergyConfig = new TrickDrawEnergyConfig();
+
+    public static class TrickDrawEnergyConfig {
+
+        @Config.RequiresMcRestart
+        @Config.Comment("Whether to enable to \"Trick: Draw Energy\" spell piece or not.")
+        public boolean enabled = true;
+
+        @Config.Comment({
+                "The divisor for computing trick potency.",
+                "potency = psiQuantity / factorPotency"
+        })
+        @Config.RangeDouble(min = 1D)
+        public double factorPotency = 15D;
+
+        @Config.Comment({
+                "The divisor for computing trick cost.",
+                "cost = psiQuantity / factorCost"
+        })
+        @Config.RangeDouble(min = 1D)
+        public double factorCost = 10D;
+
+    }
+
     @Config.Comment({
             "Conversion scheme for Forge Energy.",
             "By default, 5 FE = 1 PSI."

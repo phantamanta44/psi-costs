@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import xyz.phanta.psicosts.event.PsiLevelUpHandler;
 import xyz.phanta.psicosts.event.PsiRegenHandler;
+import xyz.phanta.psicosts.init.PsioPieces;
 import xyz.phanta.psicosts.integration.IntegrationManager;
 import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
 import xyz.phanta.psicosts.util.MagicCircleRender;
@@ -16,6 +17,7 @@ public class CommonProxy {
     protected final IntegrationManager intManager = new IntegrationManager();
 
     public void onPreInit(FMLPreInitializationEvent event) {
+        PsioPieces.init();
         MinecraftForge.EVENT_BUS.register(new PsiRegenHandler());
         MinecraftForge.EVENT_BUS.register(new PsiLevelUpHandler());
         intManager.loadIntegrations(event.getAsmData());

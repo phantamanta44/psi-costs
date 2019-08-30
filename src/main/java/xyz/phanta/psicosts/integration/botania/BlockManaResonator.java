@@ -65,11 +65,6 @@ public class BlockManaResonator extends L9Block implements IWandHUD {
     }
 
     @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
         tooltip.add(TooltipUtils.formatInfo(LangConst.TT_CHARGER_BOTANIA_MANA));
     }

@@ -1,0 +1,46 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "aca",
+    "dsd",
+    "aca"
+  ],
+  "key": {
+    "a": {
+      "type": "forge:ore_dict",
+      "ore": "alloyElite"
+    },
+    "c": {
+      "type": "forge:ore_dict",
+      "ore": "circuitElite"
+    },
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "dustPsi"
+    },
+    "s": {
+      "item": "mekanism:basicblock",
+      "data": 8
+    }
+  },
+  "result": {
+    "item": "psicosts:flux_resonator"
+  },
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "psicosts:flux_resonator"
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "mekanismgenerators"
+      }
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ]
+}

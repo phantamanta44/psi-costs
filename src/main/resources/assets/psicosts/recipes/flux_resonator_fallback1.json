@@ -1,0 +1,45 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "igi",
+    "dcd",
+    "igi"
+  ],
+  "key": {
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotSilver"
+    },
+    "g": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    },
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "dustPsi"
+    },
+    "c": {
+      "item": "minecraft:cauldron"
+    }
+  },
+  "result": {
+    "item": "psicosts:flux_resonator"
+  },
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "psicosts:flux_resonator"
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "mekanism"
+      }
+    },
+    {
+      "type": "psicosts:ore_dict",
+      "ore": "ingotSilver"
+    }
+  ]
+}

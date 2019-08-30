@@ -1,0 +1,35 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "dod",
+    "sls",
+    "lll"
+  ],
+  "key": {
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "dustPsi"
+    },
+    "o": {
+      "type": "forge:ore_dict",
+      "ore": "obsidian"
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "ingotManasteel"
+    },
+    "l": {
+      "type": "forge:ore_dict",
+      "ore": "livingrock"
+    }
+  },
+  "result": {
+    "item": "psicosts:mana_resonator"
+  },
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "psicosts:mana_resonator"
+    }
+  ]
+}

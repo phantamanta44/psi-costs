@@ -62,6 +62,16 @@ public class IntegrationManager {
         LibNine.PROXY.getRegistrar().end();
     }
 
+    public void initRecipes() {
+        for (PsioIntegration integration : integrations) {
+            try {
+                integration.registerRecipes();
+            } catch (Exception e) {
+                Psio.LOGGER.error("Integration recipe registration failed for {}!", integration.getClass());
+            }
+        }
+    }
+
     private final Collection<InventoryProvider> invProviders = new ArrayList<>();
 
     public void registerInvProvider(InventoryProvider provider) {

@@ -1,0 +1,33 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " d ",
+    "ibi",
+    " i "
+  ],
+  "key": {
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "dustPsi"
+    },
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "b": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "psicosts:psi_hypostim"
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "psicosts:ore_dict",
+        "ore": "ingotSilver"
+      }
+    }
+  ]
+}

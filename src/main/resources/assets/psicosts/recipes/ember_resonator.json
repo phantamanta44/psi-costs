@@ -1,0 +1,37 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "ccc",
+    "sds",
+    "beb"
+  ],
+  "key": {
+    "c": {
+      "type": "forge:ore_dict",
+      "ore": "plateCopper"
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "ingotSilver"
+    },
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "dustPsi"
+    },
+    "b": {
+      "item": "embers:block_caminite_brick"
+    },
+    "e": {
+      "item": "embers:crystal_ember"
+    }
+  },
+  "result": {
+    "item": "psicosts:ember_resonator"
+  },
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "psicosts:ember_resonator"
+    }
+  ]
+}

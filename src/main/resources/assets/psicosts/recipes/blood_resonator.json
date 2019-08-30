@@ -1,0 +1,35 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "gsg",
+    "dod",
+    "gsg"
+  ],
+  "key": {
+    "g": {
+      "type": "forge:ore_dict",
+      "ore": "ingotGold"
+    },
+    "s": {
+      "item": "bloodmagic:slate",
+      "data": 0
+    },
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "dustPsi"
+    },
+    "o": {
+      "type": "bloodmagic:orb",
+      "orb": "bloodmagic:weak"
+    }
+  },
+  "result": {
+    "item": "psicosts:blood_resonator"
+  },
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "psicosts:blood_resonator"
+    }
+  ]
+}

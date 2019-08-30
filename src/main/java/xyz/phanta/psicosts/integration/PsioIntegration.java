@@ -14,6 +14,10 @@ public interface PsioIntegration {
         // NO-OP
     }
 
+    default void registerRecipes() {
+        // NO-OP
+    }
+
     @interface Register {
 
         String value();

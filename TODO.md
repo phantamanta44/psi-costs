@@ -1,5 +1,5 @@
 # general
-* crafting recipes
+* psi cell recipes
 
 # forge energy
 * portable convertor that can be charged via flux caps (?)

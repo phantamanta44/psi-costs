@@ -26,7 +26,7 @@ public class CommonProxy {
     }
 
     public void onInit(FMLInitializationEvent event) {
-        // NO-OP
+        intManager.initRecipes();
     }
 
     public void onPostInit(FMLPostInitializationEvent event) {

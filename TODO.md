@@ -1,5 +1,6 @@
 # general
 * psi cell recipes
+* maybe ctm for psi glass
 
 # forge energy
 * portable convertor that can be charged via flux caps (?)

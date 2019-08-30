@@ -1,0 +1,27 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "ngn",
+    "gdg",
+    "ngn"
+  ],
+  "key": {
+    "n": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetSilver"
+    },
+    "g": {
+      "type": "forge:ore_dict",
+      "ore": "blockGlass"
+    },
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "dustPsi"
+    }
+  },
+  "result": {
+    "item": "psicosts:material_glassy",
+    "data": 0,
+    "count": 4
+  }
+}

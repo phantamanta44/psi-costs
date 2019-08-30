@@ -1,0 +1,33 @@
+{
+  "type": "psicosts:cell_upgrade",
+  "pattern": [
+    "faf",
+    "gxg",
+    "fbf"
+  ],
+  "key": {
+    "f": {
+      "type": "forge:ore_dict",
+      "ore": "ingotEbonyPsi"
+    },
+    "a": {
+      "item": "minecraft:nether_star"
+    },
+    "b": {
+      "type": "forge:ore_dict",
+      "ore": "substanceIvory"
+    },
+    "g": {
+      "type": "forge:ore_dict",
+      "ore": "gemPsi"
+    },
+    "x": {
+      "item": "psicosts:psi_cell",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "psicosts:psi_cell",
+    "data": 3
+  }
+}

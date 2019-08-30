@@ -1,0 +1,34 @@
+{
+  "type": "psicosts:cell_upgrade",
+  "pattern": [
+    "faf",
+    "gxg",
+    "fbf"
+  ],
+  "key": {
+    "f": {
+      "type": "forge:ore_dict",
+      "ore": "ingotGold"
+    },
+    "a": {
+      "type": "forge:ore_dict",
+      "ore": "gemEmerald"
+    },
+    "b": {
+      "type": "forge:ore_dict",
+      "ore": "dustRedstone"
+    },
+    "g": {
+      "type": "forge:ore_dict",
+      "ore": "gemPsi"
+    },
+    "x": {
+      "item": "psicosts:psi_cell",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "psicosts:psi_cell",
+    "data": 1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "fgf",
+    "mgm",
+    "fgf"
+  ],
+  "key": {
+    "f": {
+      "type": "forge:ore_dict",
+      "ore": "ingotSilver"
+    },
+    "m": {
+      "type": "forge:ore_dict",
+      "ore": "gemPsi"
+    },
+    "g": {
+      "item": "psicosts:material_glassy",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "psicosts:psi_cell",
+    "data": 0
+  }
+}

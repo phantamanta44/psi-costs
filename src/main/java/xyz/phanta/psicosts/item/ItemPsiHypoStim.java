@@ -82,6 +82,11 @@ public class ItemPsiHypoStim extends L9Item {
             return 0;
         }
 
+        @Override
+        public void setCharge(int amount) {
+            // NO-OP
+        }
+
     }
 
 }

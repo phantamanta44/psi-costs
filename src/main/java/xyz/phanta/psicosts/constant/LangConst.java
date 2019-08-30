@@ -8,6 +8,7 @@ public class LangConst {
     public static final String ITEM_CREATIVE_CELL = "creative_cell";
     public static final String ITEM_PSI_HYPOSTIM = "psi_hypostim";
 
+    public static final String BLOCK_MATERIAL_GLASSY = "material_glassy";
     public static final String BLOCK_FLUX_RESONATOR = "flux_resonator";
     public static final String BLOCK_MANA_RESONATOR = "mana_resonator";
     public static final String BLOCK_STARLIGHT_RESONATOR = "starlight_resonator";

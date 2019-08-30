@@ -6,6 +6,7 @@ import io.github.phantamanta44.libnine.capability.provider.CapabilityBroker;
 import io.github.phantamanta44.libnine.client.model.ParameterizedItemModel;
 import io.github.phantamanta44.libnine.item.L9ItemSubs;
 import io.github.phantamanta44.libnine.util.helper.OptUtils;
+import io.github.phantamanta44.libnine.util.math.MathUtils;
 import io.github.phantamanta44.libnine.util.nbt.ChainingTagCompound;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -145,6 +146,11 @@ public class ItemPsiCell extends L9ItemSubs implements ParameterizedItemModel.IP
             int toTransfer = Math.min(amount, getMaxCharge() - stored);
             getTag().setInteger("PsioCharge", stored + toTransfer);
             return toTransfer;
+        }
+
+        @Override
+        public void setCharge(int amount) {
+            getTag().setInteger("PsioCharge", MathUtils.clamp(amount, 0, getMaxCharge()));
         }
 
         private NBTTagCompound getTag() {

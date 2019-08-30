@@ -7,6 +7,7 @@ item.psicosts:psi_cell3.name=PSI-Force Cell
 item.psicosts:creative_cell.name=Star of PSI
 item.psicosts:psi_hypostim.name=PSI Stimulator
 
+tile.psicosts:material_glassy0.name=Psi Glass
 tile.psicosts:flux_resonator.name=Flux Resonator
 tile.psicosts:mana_resonator.name=Psionic Lensing Pedestal
 tile.psicosts:starlight_resonator.name=Cold Light Projector

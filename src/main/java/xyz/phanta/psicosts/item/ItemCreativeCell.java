@@ -70,6 +70,11 @@ public class ItemCreativeCell extends L9Item implements IBauble {
             return 0;
         }
 
+        @Override
+        public void setCharge(int amount) {
+            // NO-OP
+        }
+
     }
 
 }

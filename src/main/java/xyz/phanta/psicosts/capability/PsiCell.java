@@ -20,6 +20,8 @@ public interface PsiCell {
 
     int injectCharge(int amount);
 
+    void setCharge(int amount);
+
     class Impl implements PsiCell {
 
         @Override
@@ -40,6 +42,11 @@ public interface PsiCell {
         @Override
         public int injectCharge(int amount) {
             return 0;
+        }
+
+        @Override
+        public void setCharge(int amount) {
+            // NO-OP
         }
 
     }

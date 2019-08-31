@@ -18,7 +18,12 @@ import vazkii.psi.api.internal.IPlayerData;
 import vazkii.psi.common.Psi;
 import vazkii.psi.common.core.handler.PlayerDataHandler;
 import xyz.phanta.psicosts.Psio;
+import xyz.phanta.psicosts.capability.PsiCell;
+import xyz.phanta.psicosts.init.PsioCaps;
 import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
+
+import java.util.Iterator;
+import java.util.Objects;
 
 public class EntityPsiFlare extends EntityThrowable {
 
@@ -116,13 +121,27 @@ public class EntityPsiFlare extends EntityThrowable {
 
     private void impartTo(EntityLivingBase target) {
         if (target instanceof EntityPlayer) {
+            int energy = getPsiEnergy();
             IPlayerData playerDataUnchecked = PsiAPI.internalHandler.getDataForPlayer((EntityPlayer)target);
             if (playerDataUnchecked instanceof PlayerDataHandler.PlayerData) {
                 PlayerDataHandler.PlayerData playerData = (PlayerDataHandler.PlayerData)playerDataUnchecked;
-                playerData.availablePsi += getPsiEnergy();
-                if (target instanceof EntityPlayerMP) {
-                    Psio.INSTANCE.getNetworkHandler().sendTo(
-                            new SPacketSyncPsiEnergy(playerData.availablePsi), (EntityPlayerMP)target);
+                int transferToPlayer = Math.min(playerData.getTotalPsi() - playerData.getAvailablePsi(), energy);
+                if (transferToPlayer > 0) {
+                    energy -= transferToPlayer;
+                    playerData.availablePsi += transferToPlayer;
+                    if (target instanceof EntityPlayerMP) {
+                        Psio.INSTANCE.getNetworkHandler().sendTo(
+                                new SPacketSyncPsiEnergy(playerData.availablePsi), (EntityPlayerMP)target);
+                    }
+                }
+            }
+            if (energy > 0) {
+                Iterator<PsiCell> cellIter = Psio.PROXY.getIntegrations().getInv((EntityPlayer)target)
+                        .filter(s -> s.hasCapability(PsioCaps.PSI_CELL, null))
+                        .map(s -> Objects.requireNonNull(s.getCapability(PsioCaps.PSI_CELL, null)))
+                        .iterator();
+                while (energy > 0 && cellIter.hasNext()) {
+                    energy -= cellIter.next().injectCharge(energy);
                 }
             }
         }

@@ -13,6 +13,7 @@ import vazkii.psi.api.spell.param.ParamNumber;
 import vazkii.psi.api.spell.param.ParamVector;
 import vazkii.psi.api.spell.piece.PieceTrick;
 import vazkii.psi.common.core.handler.PlayerDataHandler;
+import xyz.phanta.psicosts.Psio;
 import xyz.phanta.psicosts.PsioConfig;
 import xyz.phanta.psicosts.capability.PsiProvider;
 import xyz.phanta.psicosts.entity.EntityPsiFlare;
@@ -71,13 +72,17 @@ public class PieceTrickDrawEnergy extends PieceTrick {
             if (tile != null && tile.hasCapability(PsioCaps.PSI_PROVIDER, null)) {
                 PlayerDataHandler.PlayerData playerData = (PlayerDataHandler.PlayerData)playerDataUnchecked;
                 PsiProvider psiProvider = Objects.requireNonNull(tile.getCapability(PsioCaps.PSI_PROVIDER, null));
-                int extracted = psiProvider.extractPsiEnergy(
-                        Math.min(playerData.getTotalPsi() - playerData.getAvailablePsi(), maxDraw), true);
+                int totalMissing = Psio.PROXY.getIntegrations().getInv(context.caster)
+                        .filter(s -> s.hasCapability(PsioCaps.PSI_CELL, null))
+                        .map(s -> Objects.requireNonNull(s.getCapability(PsioCaps.PSI_CELL, null)))
+                        .mapToInt(c -> c.getMaxCharge() - c.getStoredCharge())
+                        .sum() + playerData.getTotalPsi() - playerData.getAvailablePsi();
+                int extracted = psiProvider.extractPsiEnergy(Math.min(totalMissing, maxDraw), true);
                 if (extracted > 0) {
                     world.spawnEntity(new EntityPsiFlare(
                             world, WorldUtils.getBlockCenter(tilePos), context.caster, extracted));
                     world.playSound(
-                            null, tilePos, PsioSounds.DRAW_PSI, SoundCategory.PLAYERS, 0.75F, 1F + world.rand.nextFloat());
+                            null, tilePos, PsioSounds.DRAW_PSI, SoundCategory.PLAYERS, 0.5F, 1F + world.rand.nextFloat());
                 }
             }
         }

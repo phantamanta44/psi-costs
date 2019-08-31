@@ -14,9 +14,8 @@ import xyz.phanta.psicosts.capability.PsiCell;
 import xyz.phanta.psicosts.init.PsioCaps;
 import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
 
-import java.util.Collection;
+import java.util.Iterator;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class PsiRegenHandler {
 
@@ -26,15 +25,12 @@ public class PsiRegenHandler {
         if (!player.capabilities.isCreativeMode && event.getRegenCooldown() <= 0) {
             int cost = event.getPlayerRegen();
             if (cost > 0) {
-                Collection<PsiCell> cells = Psio.PROXY.getIntegrations().getInv(player)
+                Iterator<PsiCell> cellIter = Psio.PROXY.getIntegrations().getInv(player)
                         .filter(s -> s.hasCapability(PsioCaps.PSI_CELL, null))
                         .map(s -> Objects.requireNonNull(s.getCapability(PsioCaps.PSI_CELL, null)))
-                        .collect(Collectors.toList());
-                for (PsiCell cell : cells) {
-                    cost -= cell.extractCharge(cost, player);
-                    if (cost <= 0) {
-                        break;
-                    }
+                        .iterator();
+                while (cost > 0 && cellIter.hasNext()) {
+                    cost -= cellIter.next().extractCharge(cost, player);
                 }
                 cost = event.getPlayerRegen() - cost;
                 if (cost > 0) {

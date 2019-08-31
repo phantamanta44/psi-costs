@@ -73,14 +73,14 @@ public class PsioConfig {
                 "potency = psiQuantity / factorPotency"
         })
         @Config.RangeDouble(min = 1D)
-        public double factorPotency = 15D;
+        public double factorPotency = 732D;
 
         @Config.Comment({
                 "The divisor for computing trick cost.",
                 "cost = psiQuantity / factorCost"
         })
         @Config.RangeDouble(min = 1D)
-        public double factorCost = 10D;
+        public double factorCost = 52D;
 
     }
 

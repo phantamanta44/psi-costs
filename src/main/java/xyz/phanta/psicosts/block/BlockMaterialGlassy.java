@@ -10,7 +10,10 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import xyz.phanta.psicosts.constant.LangConst;
 import xyz.phanta.psicosts.init.PsioBlocks;
 import xyz.phanta.psicosts.item.block.ItemBlockMaterialGlassy;
@@ -50,6 +53,13 @@ public class BlockMaterialGlassy extends L9BlockStated {
     @Override
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+        IBlockState adj = world.getBlockState(pos.offset(side));
+        return adj != state && !adj.isOpaqueCube();
     }
 
     public enum Type implements IStringSerializable {

@@ -1,6 +1,8 @@
 package xyz.phanta.psicosts.integration.botania;
 
 import io.github.phantamanta44.libnine.LibNine;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.phanta.psicosts.PsioConfig;
 import xyz.phanta.psicosts.client.render.RenderInWorldPsiCharger;
 import xyz.phanta.psicosts.integration.PsioIntegration;
@@ -15,8 +17,15 @@ public class IntegrationBotania implements PsioIntegration {
         if (PsioConfig.convBotaniaMana.enabled) {
             new BlockManaResonator();
         }
-        LibNine.PROXY.getRegistrar().queueTESRReg(
-                TileManaResonator.class, new RenderInWorldPsiCharger<>(0.91125D, 1.5F, 1.025D, 0.075D, 1.25F));
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerEntriesClient() {
+        if (PsioConfig.convBotaniaMana.enabled) {
+            LibNine.PROXY.getRegistrar().queueTESRReg(
+                    TileManaResonator.class, new RenderInWorldPsiCharger<>(0.91125D, 1.5F, 1.025D, 0.075D, 1.25F));
+        }
     }
 
 }

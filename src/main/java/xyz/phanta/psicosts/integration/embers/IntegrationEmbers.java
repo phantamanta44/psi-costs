@@ -2,6 +2,8 @@ package xyz.phanta.psicosts.integration.embers;
 
 import io.github.phantamanta44.libnine.LibNine;
 import net.minecraft.client.resources.I18n;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import teamroots.embers.api.tile.IExtraCapabilityInformation;
 import xyz.phanta.psicosts.PsioConfig;
 import xyz.phanta.psicosts.client.render.RenderInWorldPsiCharger;
@@ -18,8 +20,15 @@ public class IntegrationEmbers implements PsioIntegration {
         if (PsioConfig.convEmbersEmber.enabled) {
             new BlockEmberResonator();
         }
-        LibNine.PROXY.getRegistrar().queueTESRReg(
-                TileEmberResonator.class, new RenderInWorldPsiCharger<>(0.75D, 1.15F, 0.9D, 0.05D, 1.25F));
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerEntriesClient() {
+        if (PsioConfig.convEmbersEmber.enabled) {
+            LibNine.PROXY.getRegistrar().queueTESRReg(
+                    TileEmberResonator.class, new RenderInWorldPsiCharger<>(0.75D, 1.15F, 0.9D, 0.05D, 1.25F));
+        }
     }
 
     public static String getCapInfo(IExtraCapabilityInformation.EnumIOType io, EmbersCapType type) {

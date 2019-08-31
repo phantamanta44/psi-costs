@@ -8,6 +8,8 @@ import hellfirepvp.astralsorcery.common.crafting.altar.recipes.AttunementRecipe.
 import hellfirepvp.astralsorcery.common.crafting.helper.ShapedRecipe;
 import hellfirepvp.astralsorcery.common.item.ItemCraftingComponent;
 import io.github.phantamanta44.libnine.LibNine;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import xyz.phanta.psicosts.Psio;
 import xyz.phanta.psicosts.PsioConfig;
 import xyz.phanta.psicosts.client.render.RenderInWorldPsiCharger;
@@ -30,8 +32,15 @@ public class IntegrationAstral implements PsioIntegration {
         if (PsioConfig.convAstralStarlight.enabled) {
             BLOCK_STARLIGHT_RESONATOR = new BlockStarlightResonator();
         }
-        LibNine.PROXY.getRegistrar().queueTESRReg(
-                TileStarlightResonator.class, new RenderInWorldPsiCharger<>(0.875D, 1.25F, 0.975D, 0.05D, 1.25F));
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerEntriesClient() {
+        if (PsioConfig.convAstralStarlight.enabled) {
+            LibNine.PROXY.getRegistrar().queueTESRReg(
+                    TileStarlightResonator.class, new RenderInWorldPsiCharger<>(0.875D, 1.25F, 0.975D, 0.05D, 1.25F));
+        }
     }
 
     @Override

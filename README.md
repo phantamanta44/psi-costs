@@ -46,6 +46,7 @@ Psio currently adds one spell piece:
 * [libnine](https://github.com/phantamanta44/libnine) (Required)
 * [Psi](https://github.com/Vazkii/Psi) (Required)
 * [JEI](https://github.com/mezz/JustEnoughItems) (Optional)
+* [Baubles](https://github.com/Azanor/Baubles) (Optional)
 * [Botania](https://github.com/Vazkii/Botania) (Optional)
 * [Astral Sorcery](https://github.com/https://github.com/HellFirePvP/AstralSorcery) (Optional)
 * [Blood Magic](https://github.com/WayofTime/BloodMagic) (Optional)

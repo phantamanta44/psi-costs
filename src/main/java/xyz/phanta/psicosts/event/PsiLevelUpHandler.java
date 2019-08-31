@@ -13,15 +13,13 @@ import xyz.phanta.psicosts.PsioConfig;
 
 public class PsiLevelUpHandler {
 
-    private static final CommandPsiLearn teacher = new CommandPsiLearn();
-
     @SubscribeEvent
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         if (PsioConfig.maximumPsiOnJoin) {
             IPlayerData dataUnchecked = PsiAPI.internalHandler.getDataForPlayer(event.player);
             if (dataUnchecked instanceof PlayerDataHandler.PlayerData) {
                 PlayerDataHandler.PlayerData data = (PlayerDataHandler.PlayerData)dataUnchecked;
-                teacher.applyAll(data, event.player, event.player);
+                CommandPsiLearn.unlockAll(data);
                 if (event.player instanceof EntityPlayerMP) {
                     NetworkHandler.INSTANCE.sendTo(new MessageDataSync(data), (EntityPlayerMP)event.player);
                 }

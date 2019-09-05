@@ -8,7 +8,7 @@
 
 A couple extra tweaks are added to supplement these changes. Firstly, players collecting experience points while their PSI pools aren't topped-off will cause some of the XP to be converted to PSI. Secondly, all players will have Psi fully unlocked as soon as they join the game. Both of these behaviours can be modified and disabled in the config file.
 
-[JEI](https://github.com/mezz/JustEnoughItems) and [TOP](https://github.com/McJtyMods/TheOneProbe) are recommended for playing with this mod. They'll make your life easier.
+At least one source of silver ingots and associated metal products is recommended for playing with this mod -- otherwise, recipes will fall back to iron and its associated metal products. Furuthermore, [JEI](https://github.com/mezz/JustEnoughItems) and [TOP](https://github.com/McJtyMods/TheOneProbe) are recommended for clients. They'll make your life easier.
 
 ## PSI-Storing Items
 
@@ -24,7 +24,7 @@ Two types of PSI-storing items exist: single-use cells and rechargeable cells. S
 
 Several machines exist which can generate PSI and recharge PSI cells. Most of them rely on other mods to do this; users of Psio are recommended to install at least one such compatible mod.
 
-* **Flux Resonator** - Generates PSI from Forge Energy.
+* **Flux Resonator** - Generates PSI from Forge Energy. [Mekanism](https://github.com/mekanism/Mekanism) is recommended, as the recipe is structured around it.
 * **Psionic Lensing Pedestal** - Generates PSI from [Botania](https://github.com/Vazkii/Botania) mana.
 * **Cold Light Projector** - Generates PSI from [Astral Sorcery](https://github.com/HellFirePvP/AstralSorcery) liquid starlight.
 * **Sanguine Psiogenesis Device** - Generates PSI from [Blood Magic](https://github.com/WayofTime/BloodMagic) life essence.

@@ -11,7 +11,7 @@
   "logoFile": "",
   "screenshots": [],
   "useDependencyInformation": true,
-  "dependencies": ["libnine", "psi", "astralsorcery", "bloodmagic", "botania", "embers", "thaumcraft"],
+  "dependencies": ["libnine", "psi", "baubles", "theoneprobe", "astralsorcery", "bloodmagic", "botania", "embers", "thaumcraft"],
   "requiredMods": ["libnine@[1.1.2,)", "psi"]
 }
 ]

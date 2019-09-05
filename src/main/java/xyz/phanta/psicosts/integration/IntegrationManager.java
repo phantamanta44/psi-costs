@@ -72,6 +72,16 @@ public class IntegrationManager {
         }
     }
 
+    public void dispatchLateRegistration() {
+        for (PsioIntegration integration : integrations) {
+            try {
+                integration.lateRegister();
+            } catch (Exception e) {
+                Psio.LOGGER.error("Integration late registration failed for {}!", integration.getClass());
+            }
+        }
+    }
+
     private final Collection<InventoryProvider> invProviders = new ArrayList<>();
 
     public void registerInvProvider(InventoryProvider provider) {

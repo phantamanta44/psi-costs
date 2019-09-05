@@ -30,7 +30,7 @@ public class CommonProxy {
     }
 
     public void onPostInit(FMLPostInitializationEvent event) {
-        // NO-OP
+        intManager.dispatchLateRegistration();
     }
 
     public IntegrationManager getIntegrations() {

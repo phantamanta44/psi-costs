@@ -23,6 +23,10 @@ public interface PsioIntegration {
         // NO-OP
     }
 
+    default void lateRegister() {
+        // NO-OP
+    }
+
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
     @interface Register {

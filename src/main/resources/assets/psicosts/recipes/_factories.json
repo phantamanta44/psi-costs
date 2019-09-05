@@ -1,5 +1,8 @@
 {
   "recipes": {
     "cell_upgrade": "xyz.phanta.psicosts.recipe.CellUpgradeRecipe$Factory"
+  },
+  "conditions": {
+    "ore_dict": "xyz.phanta.psicosts.recipe.condition.RecipeConditionOreDict"
   }
 }

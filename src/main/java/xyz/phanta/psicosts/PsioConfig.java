@@ -84,36 +84,38 @@ public class PsioConfig {
 
     }
 
+    // shoutouts to dudblockman for these default values
+    // mostly computed roughly from the value of smelting items
     @Config.Comment({
             "Conversion scheme for Forge Energy.",
-            "By default, 5 FE = 1 PSI."
+            "By default, 32 FE = 1 PSI."
     })
-    public static final ConversionConfig convForgeEnergy = new ConversionConfig(0.2D);
+    public static final ConversionConfig convForgeEnergy = new ConversionConfig(1D / 32D);
     @Config.Comment({
             "Conversion scheme for Botania mana.",
-            "By default, 2 mana = 1 PSI (1 tablet refills the entire PSI bar about 50 times)."
+            "By default, 3 mana = 5 PSI (1 tablet refills the entire PSI bar about 167 times)."
     })
-    public static final ConversionConfig convBotaniaMana = new ConversionConfig(0.5D);
+    public static final ConversionConfig convBotaniaMana = new ConversionConfig(5D / 3D);
     @Config.Comment({
             "Conversion scheme for Astral Sorcery liquid starlight.",
-            "By default, 1 mB starlight = 1 PSI."
+            "By default, 1 mB starlight = 5 PSI."
     })
-    public static final ConversionConfig convAstralStarlight = new ConversionConfig(1D);
+    public static final ConversionConfig convAstralStarlight = new ConversionConfig(5D);
     @Config.Comment({
             "Conversion scheme for Blood Magic life essence.",
-            "By default, 1 LP = 3 PSI."
+            "By default, 1 LP = 10 PSI."
     })
-    public static final ConversionConfig convBloodMagicLp = new ConversionConfig(3D);
+    public static final ConversionConfig convBloodMagicLp = new ConversionConfig(10D);
     @Config.Comment({
             "Conversion scheme for Embers ember.",
-            "By default, 1 ember = 5 PSI."
+            "By default, 16 ember = 25 PSI."
     })
-    public static final ConversionConfig convEmbersEmber = new ConversionConfig(5D);
+    public static final ConversionConfig convEmbersEmber = new ConversionConfig(25D / 16D);
     @Config.Comment({
             "Conversion scheme for Thaumcraft potentia essentia.",
-            "By default, 1 essentia = 250 PSI."
+            "By default, 1 essentia = 200 PSI."
     })
-    public static final ConversionConfig convThaumEssentia = new ConversionConfig(250D);
+    public static final ConversionConfig convThaumEssentia = new ConversionConfig(200D);
 
     public static class ConversionConfig {
 

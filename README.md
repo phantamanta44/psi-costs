@@ -8,7 +8,7 @@
 
 A couple extra tweaks are added to supplement these changes. Firstly, players collecting experience points while their PSI pools aren't topped-off will cause some of the XP to be converted to PSI. Secondly, all players will have Psi fully unlocked as soon as they join the game. Both of these behaviours can be modified and disabled in the config file.
 
-[JEI](https://github.com/mezz/JustEnoughItems) is recommended for playing with this mod. It'll make your life easier.
+[JEI](https://github.com/mezz/JustEnoughItems) and [TOP](https://github.com/McJtyMods/TheOneProbe) are recommended for playing with this mod. They'll make your life easier.
 
 ## PSI-Storing Items
 
@@ -45,7 +45,8 @@ Psio currently adds one spell piece:
 
 * [libnine](https://github.com/phantamanta44/libnine) (Required)
 * [Psi](https://github.com/Vazkii/Psi) (Required)
-* [JEI](https://github.com/mezz/JustEnoughItems) (Optional)
+* [Just Enough Items](https://github.com/mezz/JustEnoughItems) (Optional)
+* [The One Probe](https://github.com/McJtyMods/TheOneProbe) (Optional)
 * [Baubles](https://github.com/Azanor/Baubles) (Optional)
 * [Botania](https://github.com/Vazkii/Botania) (Optional)
 * [Astral Sorcery](https://github.com/https://github.com/HellFirePvP/AstralSorcery) (Optional)

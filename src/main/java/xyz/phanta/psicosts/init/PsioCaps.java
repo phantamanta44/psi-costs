@@ -8,7 +8,6 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import xyz.phanta.psicosts.capability.PsiCell;
 import xyz.phanta.psicosts.capability.PsiProvider;
 
-@SuppressWarnings("NullableProblems")
 public class PsioCaps {
 
     @CapabilityInject(PsiCell.class)

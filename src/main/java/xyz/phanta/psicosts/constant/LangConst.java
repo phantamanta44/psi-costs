@@ -45,4 +45,7 @@ public class LangConst {
     public static final String TT_CHARGER_EMBERS_EMBER = TT_CHARGER_KEY + "embers_ember";
     public static final String TT_CHARGER_THAUM_ESSENTIA = TT_CHARGER_KEY + "thaum_essentia";
 
+    private static final String SOUND_KEY = "psio.";
+    public static final String SOUND_DRAW_PSI = SOUND_KEY + "effect.draw_psi";
+
 }

@@ -3,6 +3,7 @@ package xyz.phanta.psicosts.constant;
 import io.github.phantamanta44.libnine.util.render.TextureRegion;
 import io.github.phantamanta44.libnine.util.render.TextureResource;
 import net.minecraft.util.ResourceLocation;
+import vazkii.psi.common.lib.LibMisc;
 import xyz.phanta.psicosts.Psio;
 
 public class ResConst {
@@ -39,7 +40,7 @@ public class ResConst {
     }
 
     private static ResourceLocation getPsiResource(String path) {
-        return new ResourceLocation("psi", path);
+        return new ResourceLocation(LibMisc.MOD_ID, path);
     }
 
 }

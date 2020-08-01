@@ -16,19 +16,17 @@ import xyz.phanta.psicosts.item.ItemPsiCell;
 public class Psio extends Virtue {
 
     public static final String MOD_ID = "psicosts";
-    public static final String VERSION = "1.0.1";
+    public static final String VERSION = "1.0.2";
 
-    @SuppressWarnings("NullableProblems")
     @Mod.Instance(MOD_ID)
     public static Psio INSTANCE;
 
-    @SuppressWarnings("NullableProblems")
     @SidedProxy(
             clientSide = "xyz.phanta.psicosts.client.ClientProxy",
             serverSide = "xyz.phanta.psicosts.CommonProxy")
     public static CommonProxy PROXY;
 
-    @SuppressWarnings("NullableProblems")
+    @SuppressWarnings("NotNullFieldNotInitialized")
     public static Logger LOGGER;
 
     public Psio() {

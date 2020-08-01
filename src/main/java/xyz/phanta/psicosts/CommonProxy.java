@@ -1,16 +1,20 @@
 package xyz.phanta.psicosts;
 
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.oredict.OreDictionary;
 import xyz.phanta.psicosts.event.PsiLevelUpHandler;
 import xyz.phanta.psicosts.event.PsiRegenHandler;
 import xyz.phanta.psicosts.init.PsioPieces;
 import xyz.phanta.psicosts.integration.IntegrationManager;
 import xyz.phanta.psicosts.net.SPacketSyncPsiEnergy;
 import xyz.phanta.psicosts.util.MagicCircleRender;
+
+import java.util.List;
 
 public class CommonProxy {
 
@@ -30,7 +34,20 @@ public class CommonProxy {
     }
 
     public void onPostInit(FMLPostInitializationEvent event) {
+        handlePsioMetalDict("ingot");
+        handlePsioMetalDict("nugget");
         intManager.dispatchLateRegistration();
+    }
+
+    private static void handlePsioMetalDict(String prefix) {
+        List<ItemStack> entries = OreDictionary.getOres(prefix + "Silver", false);
+        if (entries.isEmpty()) {
+            entries = OreDictionary.getOres(prefix + "Iron", false);
+        }
+        String pmKey = prefix + "PsioMetal";
+        for (ItemStack stack : entries) {
+            OreDictionary.registerOre(pmKey, stack);
+        }
     }
 
     public IntegrationManager getIntegrations() {

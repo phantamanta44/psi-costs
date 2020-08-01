@@ -8,7 +8,7 @@
   "key": {
     "f": {
       "type": "forge:ore_dict",
-      "ore": "ingotSilver"
+      "ore": "ingotPsioMetal"
     },
     "m": {
       "type": "forge:ore_dict",

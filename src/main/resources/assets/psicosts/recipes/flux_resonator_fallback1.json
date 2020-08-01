@@ -8,7 +8,7 @@
   "key": {
     "i": {
       "type": "forge:ore_dict",
-      "ore": "ingotSilver"
+      "ore": "ingotPsioMetal"
     },
     "g": {
       "type": "forge:ore_dict",
@@ -36,10 +36,6 @@
         "type": "forge:mod_loaded",
         "modid": "mekanism"
       }
-    },
-    {
-      "type": "psicosts:ore_dict",
-      "ore": "ingotSilver"
     }
   ]
 }

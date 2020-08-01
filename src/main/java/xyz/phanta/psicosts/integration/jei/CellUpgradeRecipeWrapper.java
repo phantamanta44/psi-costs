@@ -2,10 +2,10 @@ package xyz.phanta.psicosts.integration.jei;
 
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import xyz.phanta.psicosts.recipe.CellUpgradeRecipe;
 
@@ -33,8 +33,8 @@ public class CellUpgradeRecipeWrapper implements IShapedCraftingRecipeWrapper {
 
     @Override
     public void getIngredients(IIngredients ings) {
-        ings.setInputLists(ItemStack.class, helpers.getStackHelper().expandRecipeItemStackInputs(recipe.getIngredients()));
-        ings.setOutput(ItemStack.class, recipe.getRecipeOutput());
+        ings.setInputLists(VanillaTypes.ITEM, helpers.getStackHelper().expandRecipeItemStackInputs(recipe.getIngredients()));
+        ings.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
     }
 
     @Nullable

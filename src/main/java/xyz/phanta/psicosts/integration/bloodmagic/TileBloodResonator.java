@@ -27,7 +27,7 @@ public class TileBloodResonator extends TilePsiCharger {
 
     @AutoSerialize
     private final FluidReservoir tank = new FluidReservoir(
-            BlockLifeEssence.getLifeEssence(), new SimpleIntReservoir(getBufferSizeInt()));
+            BlockLifeEssence.getLifeEssence(), null, new SimpleIntReservoir(getBufferSizeInt()));
     @AutoSerialize
     private final L9AspectSlot bloodOrbSlot = new L9AspectSlot.Observable(
             s -> s.getItem() instanceof IBloodOrb, (i, o, n) -> setDirty());
@@ -40,7 +40,7 @@ public class TileBloodResonator extends TilePsiCharger {
     @Override
     protected CapabilityBroker initCapabilities() {
         return super.initCapabilities()
-                .with(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, new L9AspectFluidHandler(tank));
+                .with(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, new L9AspectFluidHandler(true, tank));
     }
 
     public FluidReservoir getBloodTank() {

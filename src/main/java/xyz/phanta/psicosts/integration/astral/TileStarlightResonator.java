@@ -24,7 +24,7 @@ public class TileStarlightResonator extends TileInWorldPsiCharger implements ILi
 
     @AutoSerialize
     private final FluidReservoir tank = new FluidReservoir(
-            BlocksAS.fluidLiquidStarlight, new SimpleIntReservoir(getBufferSizeInt()));
+            BlocksAS.fluidLiquidStarlight, null, new SimpleIntReservoir(getBufferSizeInt()));
 
     public TileStarlightResonator() {
         super(PsioConfig.convAstralStarlight);
@@ -34,7 +34,7 @@ public class TileStarlightResonator extends TileInWorldPsiCharger implements ILi
     @Override
     protected CapabilityBroker initCapabilities() {
         return super.initCapabilities()
-                .with(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, new L9AspectFluidHandler(tank));
+                .with(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, new L9AspectFluidHandler(true, tank));
     }
 
     public FluidReservoir getStarlightTank() {
@@ -75,7 +75,7 @@ public class TileStarlightResonator extends TileInWorldPsiCharger implements ILi
 
     @Override
     public boolean canAcceptStarlight(int qty) {
-        return tank.canFill();
+        return true;
     }
 
 }

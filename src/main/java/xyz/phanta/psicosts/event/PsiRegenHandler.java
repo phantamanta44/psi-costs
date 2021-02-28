@@ -3,6 +3,7 @@ package xyz.phanta.psicosts.event;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.psi.api.PsiAPI;
 import vazkii.psi.api.cad.RegenPsiEvent;
@@ -19,28 +20,42 @@ import java.util.Objects;
 
 public class PsiRegenHandler {
 
-    @SubscribeEvent
+    @SubscribeEvent(priority=EventPriority.LOWEST)
     public void onPsiRegen(RegenPsiEvent event) {
         EntityPlayer player = event.getPlayer();
         if (!player.capabilities.isCreativeMode && event.getRegenCooldown() <= 0) {
-            int cost = event.getPlayerRegen();
-            if (cost > 0) {
+            int cost_P = event.getPlayerRegen();
+            int cost_C = event.getCadRegen();
+            if (cost_P + cost_C > 0) {
                 Iterator<PsiCell> cellIter = Psio.PROXY.getIntegrations().getInv(player)
                         .filter(s -> s.hasCapability(PsioCaps.PSI_CELL, null))
                         .map(s -> Objects.requireNonNull(s.getCapability(PsioCaps.PSI_CELL, null)))
                         .iterator();
-                while (cost > 0 && cellIter.hasNext()) {
-                    cost -= cellIter.next().extractCharge(cost, player);
+                int[] cost = new int[2];
+                if(event.willRegenCadFirst()) {
+                	cost[0] = cost_C;
+                	cost[1] = cost_P;		
                 }
-                cost = event.getPlayerRegen() - cost;
-                if (cost > 0) {
-                    event.setMaxPlayerRegen(cost);
-                } else {
-                    event.setMaxPlayerRegen(0);
-                    if (event.getCadRegen() <= 0) {
-                        event.setRegenCooldown(20);
-                    }
+                else {
+                	cost[0] = cost_P;
+                	cost[1] = cost_C;	
                 }
+                for(int i = 0; i < 2; i++)
+                	while (cost[i] > 0 && cellIter.hasNext()) {
+                		cost[i] -= cellIter.next().extractCharge(cost[i], player);
+                	}
+                if(event.willRegenCadFirst()) {
+                	cost_C = cost_C - cost[0];
+                	cost_P = cost_P - cost[1];		
+                }
+                else {
+                	cost_P = cost_P - cost[0];
+                	cost_C = cost_C - cost[1];	
+                }
+                event.setMaxPlayerRegen(cost_P);
+                event.setMaxCadRegen(cost_C);
+                if(cost_P <= 0 && cost_C <= 0)
+                	event.setRegenCooldown(20);
             }
         }
     }
